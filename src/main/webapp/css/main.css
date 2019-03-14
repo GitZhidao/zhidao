@@ -1,0 +1,283 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+#content{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.head {
+    width: 100%;
+    height: 49px;
+    box-shadow: 0 10px 10px 0 rgba(41, 85, 115, .21);
+    position: fixed;
+}
+
+.con{
+    height: 49px;
+    width: 50px;
+    position: absolute;
+    margin-left:114px;
+}
+
+.head h1{
+    padding-left: 0px;
+    margin: 0px auto;
+    margin-left: 0px;
+    font-size: 35px;
+}
+
+.menu{
+    width: 12%;
+    height: 100%;
+    background: #204d74;
+    position: fixed;
+    top: 49px;
+}
+
+.menu_head{
+    width: 100px;
+    height:100px;
+    position: relative;
+    color: white;
+
+}
+
+.menu_head_1{
+    width: 100px;
+    font-size: 12px;
+    padding-top: 30px;
+    margin-left: 40px;
+
+}
+
+.menu_head_2{
+   margin-top: 5px;
+    font-size: 20px;
+}
+
+
+#menu_middle{
+    width: 100%;
+    height: 400px;
+}
+
+
+
+.item{
+    list-style: none;
+    text-indent: 30px;
+    height: 50px;
+    width: 100%;
+    margin-left: -30px;
+}
+
+.item a {
+   color: white;
+   padding: 10px;
+
+}
+
+.item a:hover{
+    text-decoration: none;
+    color: #8c8c8c;
+}
+
+#menu-separator{
+    width: 110px;
+    margin-top: 30px;
+    padding-left: 20px;
+
+
+}
+
+#menu-separator hr{
+    width: 130px;
+    background-color: #8c8c8c;
+    border: none;
+    height: 1px;
+
+
+}
+
+
+#menu-foot{
+    width: 170px;
+    height:157px;
+    margin-left: -23px;
+    position: relative;
+}
+
+#login_btn{
+    width: 100px;
+    height: 20px;
+    margin-left: 35px;
+    border-radius: 4px;
+    background-color: #2aabd2;
+    border:none;
+
+}
+
+#main{
+     width: 100%;
+    height: 100%;
+     position: fixed;
+     left: 12%;
+     top: 49px;
+     border: none;
+
+
+ }
+#frame_1{
+    position: absolute;
+    left: 0px;
+    height:100%;
+    width: 40%;
+}
+#frame_2{
+    position: absolute;
+    left: 40%;
+    height:100%;
+    width: 60%;
+}
+
+.msg-form{
+    height: 100%;
+    position: fixed;
+    left: 14%;
+    padding-top: 120px;
+}
+.btn-primary{
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: #2aabd2;
+    border:none;
+    margin-left: 100px;
+}
+
+.loginOut {
+    color: #FFFFFF;
+    padding: 5px;
+    font-size: 4px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 30px;
+    background-color: #2aabd2;
+}
+
+#menu-foot a:hover{
+    text-decoration: none;
+    background-color: #2aabd2;
+}
+
+.msg_list {
+    position: fixed;
+    margin-top: 49px;
+    left: 12%;
+    width: 44%;
+    height: 100%;
+    overflow: auto;
+}
+.msg{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin-top: 6px;
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 10px 0 rgba(41, 85, 115, .21);
+    border-radius: 20px;
+}
+
+/*滚动条样式*/
+.msg_list::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+.msg_list::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.msg_list::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+
+.msg_title{
+    position: absolute;
+    margin-left: 20px;
+}
+
+.creatTime{
+    position: absolute;
+    bottom: 0px;
+    margin-left: 20px;
+}
+
+.endTime{
+    position: absolute;
+    bottom: 0px;
+    left: 300px;
+}
+
+.delete_msg{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.delete_msg a{
+    background: #1b6d85;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    border-radius: 10px;
+    border: none;
+}
+
+.delete_msg a:hover{
+    text-decoration: none;
+}
+
+.msg_leirong{
+    position: fixed;
+    top: 49px;
+    left: 56%;
+    width: 44%;
+    height: 100%;
+}
+.msg_leirong iframe{
+    width: 100%;
+    height: 100%;
+}
+/*框架滚动条样式*/
+.msg_leirong iframe::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+.msg_leirong iframe::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.msg_leirong iframe::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+
+#welcome{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 12%;
+    top: 49px;
+    background-color: red;
+    background-image: url("/images/welcome.jpg");
+}
