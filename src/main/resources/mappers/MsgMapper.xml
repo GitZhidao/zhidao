@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidao.dao.MsgMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidao.pojo.Msg" >
+    <constructor >
+      <idArg column="msgid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="filepath" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zhidao.pojo.Msg" >
+    <constructor >
+      <idArg column="msgid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="filepath" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    msgid, title, endtime, code, location, filepath, userid
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from z_msg
+    where msgid = #{msgid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from z_msg
+    where msgid = #{msgid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhidao.pojo.Msg" >
+    insert into z_msg (msgid, title, endtime, 
+      code, location, filepath, 
+      userid, content)
+    values (#{msgid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{code,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidao.pojo.Msg" >
+    insert into z_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="msgid != null" >
+        msgid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="filepath != null" >
+        filepath,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="msgid != null" >
+        #{msgid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidao.pojo.Msg" >
+    update z_msg
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where msgid = #{msgid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhidao.pojo.Msg" >
+    update z_msg
+    set title = #{title,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where msgid = #{msgid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidao.pojo.Msg" >
+    update z_msg
+    set title = #{title,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER}
+    where msgid = #{msgid,jdbcType=INTEGER}
+  </update>
+</mapper>
