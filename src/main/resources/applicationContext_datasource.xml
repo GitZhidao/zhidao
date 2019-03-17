@@ -64,30 +64,10 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>
+        <!--<property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>-->
     </bean>
 
     <!--mapperBean-->
-    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zhidao.dao.UserMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <bean id="catagoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zhidao.dao.CatagoryMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <bean id="oldMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zhidao.dao.OldMsgMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <bean id="msgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zhidao.dao.MsgMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <bean id="delMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zhidao.dao.DelMsgMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
     <!--事物管理器-->
     <bean id="transaction" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource"  ref="dataSource"/>
