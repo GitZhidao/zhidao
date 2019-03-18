@@ -36,10 +36,5 @@ public class UserController {
         return mv;
     }
 
-    @RequestMapping(value = "/regist",method = RequestMethod.POST)
-    public ServerResponse regist(@ModelAttribute("user") User user){
-       
-
-    }
 
 }
