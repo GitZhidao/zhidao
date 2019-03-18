@@ -35,6 +35,6 @@ target/
 Thumbs.db
 
 #mysql
-database.properties
+/database.properties
 
 
