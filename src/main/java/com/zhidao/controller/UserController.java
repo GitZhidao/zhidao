@@ -24,7 +24,7 @@ public class UserController {
     IUserService iUserService;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView Login(@RequestParam("username") String sername, @RequestParam("password") String password){
+    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password){
         ServerResponse serverResponse=iUserService.findUser(username,password);
         if(serverResponse.isSuccess()){
             User user= (User) serverResponse.getData();
@@ -34,6 +34,7 @@ public class UserController {
             mv.addObject("serverResponse",serverResponse);
             return mv;
         }
+        System.out.println("sadas");
         ModelAndView mv=new ModelAndView("main");
         mv.addObject("user",serverResponse.getData());
         return mv;
