@@ -24,7 +24,7 @@ public class UserController {
     IUserService iUserService;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password){
+    public ModelAndView Login(@RequestParam("username") String sername, @RequestParam("password") String password){
         ServerResponse serverResponse=iUserService.findUser(username,password);
         if(serverResponse.isSuccess()){
             User user= (User) serverResponse.getData();
