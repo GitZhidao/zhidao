@@ -24,11 +24,14 @@ public class UserController {
     IUserService iUserService;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView Login(@RequestParam("id") int id, @RequestParam("password") String password){
-        ServerResponse serverResponse=iUserService.findUser(id);
+    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password){
+        ServerResponse serverResponse=iUserService.findUser(username,password);
         if(serverResponse.isSuccess()){
+            User user= (User) serverResponse.getData();
+
+
             ModelAndView mv=new ModelAndView("main");
-            mv.addObject("user",serverResponse.getData());
+            mv.addObject("serverResponse",serverResponse);
             return mv;
         }
         ModelAndView mv=new ModelAndView("main");

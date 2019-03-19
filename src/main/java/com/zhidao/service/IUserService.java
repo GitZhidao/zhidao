@@ -5,6 +5,7 @@ import com.zhidao.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 public interface IUserService {
-    ServerResponse<User> findUser(int id);
+    ServerResponse<User> findUser(String username,String password);
+
 //    ServerResponse<String> delete(int id);
 }

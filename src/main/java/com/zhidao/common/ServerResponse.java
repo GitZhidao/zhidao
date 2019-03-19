@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Version: 1.0
  **/
 public class ServerResponse<T> implements Serializable {
-    private int status;
+    private int status;  //代码
     private T data;
     private String msg;
 

@@ -18,11 +18,11 @@ public class ImplUserService implements IUserService {
     @Autowired
     UserMapper userMapper;
     @Override
-    public ServerResponse findUser(int id) {
-        User user=userMapper.selectByPrimaryKey(id);
+    public ServerResponse findUser(String username,String password) {
+        User user=userMapper.selectByUsername(username);
         if (user!=null){
-            ServerResponse serverResponse=ServerResponse.createBySuccess("查询成功",user);
-            return serverResponse;
+            /**/
+            ServerResponse serverResponse=ServerResponse.createBySuccess("成功",user);
         }
         return  ServerResponse.createByErrorMessage("查询失败");
     }
