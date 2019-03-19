@@ -35,6 +35,4 @@ public class UserController {
         mv.addObject("user",serverResponse.getData());
         return mv;
     }
-
-
 }
