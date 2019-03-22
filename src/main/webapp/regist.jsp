@@ -12,8 +12,8 @@
     <link rel="stylesheet" type="text/css" href="/css/auth.css"/>
     <link rel="stylesheet" type="text/css" href="/css/css.css"/>
     <link rel="stylesheet" type="text/css" href="/css/jquery.ui.css"/>
+    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     <script src="/layui/layui.js"></script>
-
 </head>
 <body>
 <div class="lowin lowin-blue">
@@ -27,17 +27,17 @@
                     <p>创建你的账户</p>
                     <div class="lowin-group">
                         <label>Name</label>
-                        <input type="text" name="username"  autocomplete="name" required="required" class="lowin-input">
+                        <input type="text" name="username" id="username" autocomplete="name" required="required" class="lowin-input">
                     </div>
                     <div class="lowin-group">
                         <label>Password</label>
-                        <input type="password" name="password" autocomplete="current-password" required="required" class="lowin-input">
+                        <input type="password" name="password" id="password" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
                     <div class="lowin-group">
                         <label>email</label>
                         <input type="password" name="email" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
-                    <button class="lowin-btn" type="submit">
+                    <button class="lowin-btn" id="regist_button" type="submit">
                         Sign Up
                     </button>
 
@@ -59,8 +59,9 @@
     window.onload=layui.use(['layer', 'form'], function(){
         var layer = layui.layer
             ,form = layui.form;
-        if (msg.trim()){
-            layer.msg(msg)  ;
+        if (msg.trim()
+        ){
+            layer.msg(msg);
         }
     });
 </script>

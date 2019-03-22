@@ -20,7 +20,7 @@
         </div>
         <div id="menu_middle">
             <ul style="margin-left: 0px">
-                <li class="item"><a  href="/user/userinfo.do" target="_self">个人信息</a></li>
+                <li class="item"><a  href="/user/userinfo.do"  target="_self">个人信息</a></li>
                 <li class="item"><a  href="/addMsg.jsp" target="_parent">添加信息</a></li>
                 <li class="item"><a  href="/msg/findAllMsg.do" target="_self">所有信息</a></li>
                 <li class="item"><a  href="/oldMsg/allOldMsg.do" target="_self">历史信息</a> </li>

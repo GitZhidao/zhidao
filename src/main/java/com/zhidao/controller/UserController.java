@@ -64,9 +64,5 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/userinfo",method = RequestMethod.POST)
-    public @ResponseBody User getUserInfo(@ModelAttribute("user") User user){
-        return user;
-    }
 }
 
