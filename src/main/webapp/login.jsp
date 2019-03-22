@@ -20,7 +20,7 @@
     <div class="lowin-wrapper">
         <div class="lowin-box lowin-login">
             <div class="lowin-box-inner">
-                <form action="/user/login.do" method="get">
+                <form action="/user/login.do" method="post">
                     <p>账户登录</p>
                     <div class="lowin-group">
                         <label>用户名<a href="#" class="login-back-link">Sign in?</a></label>
