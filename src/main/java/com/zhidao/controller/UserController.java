@@ -36,14 +36,6 @@ public class UserController {
             mv.addObject("serverResponse", serverResponse);
             return mv;
         }
-<<<<<<< HEAD
-//        else if (serverResponse.getStatus() == 2) {
-//            ModelAndView mv = new ModelAndView("regist");
-//            mv.addObject("serverResponse", serverResponse);
-//            return mv;
-//        }
-        ModelAndView mv = new ModelAndView("redirect:/regist.jsp");
-=======
         else if (serverResponse.getStatus() == ResponseCode.UnRegist.getCode()) {
             //用户名不存在
             mv.setViewName("redirect:/regist.jsp");//跳转注册界面
@@ -51,7 +43,6 @@ public class UserController {
             return mv;
         }
         mv.setViewName("redirect:/login.jsp");
->>>>>>> c18338dc827941f7b59cddd0add493375410a80a
         mv.addObject("serverResponse", serverResponse);
         return mv;
     }
