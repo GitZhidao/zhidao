@@ -64,7 +64,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>-->
+        <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>
     </bean>
 
     <!--mapperbean-->
@@ -74,6 +74,10 @@
     </bean>
 
     <bean id="getMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.zhidao.dao.getMsgMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    <bean id="MsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.zhidao.dao.MsgMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>

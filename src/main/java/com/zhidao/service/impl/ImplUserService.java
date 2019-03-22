@@ -23,14 +23,14 @@ public class ImplUserService implements IUserService {
     @Override
     public ServerResponse login(String username,String password) {
         User user=userMapper.selectByUsername(username);
+        System.out.println(user.getPassword());
         if (user==null){
             ServerResponse serverResponse=ServerResponse.createByErrorCodeMessage(ResponseCode.UnRegist.getCode(),"用户名不存在请注册！");
             return serverResponse;
         }
-        else if(password !=user.getPassword()){
+        else if(!password.equals(user.getPassword())){
             return ServerResponse.createByErrorMessage("密码错误！");
         }
-        else
             return ServerResponse.createBySuccess(user);
     }
 

@@ -37,7 +37,7 @@ public class UserController {
 //            mv.addObject("serverResponse", serverResponse);
 //            return mv;
 //        }
-        ModelAndView mv = new ModelAndView("regist");
+        ModelAndView mv = new ModelAndView("redirect:/regist.jsp");
         mv.addObject("serverResponse", serverResponse);
         return mv;
     }
