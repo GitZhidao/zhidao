@@ -20,15 +20,24 @@ import java.util.Date;
 public class ImplUserService implements IUserService {
     @Autowired
     UserMapper userMapper;
+
+    //登陆
     @Override
     public ServerResponse login(String username,String password) {
         User user=userMapper.selectByUsername(username);
         System.out.println(user.getPassword());
         if (user==null){
+            //用户名不存在
             ServerResponse serverResponse=ServerResponse.createByErrorCodeMessage(ResponseCode.UnRegist.getCode(),"用户名不存在请注册！");
             return serverResponse;
         }
+<<<<<<< HEAD
         else if(!password.equals(user.getPassword())){
+=======
+
+        else if(!password.equals(user.getPassword())){
+            //密码不正确
+>>>>>>> c18338dc827941f7b59cddd0add493375410a80a
             return ServerResponse.createByErrorMessage("密码错误！");
         }
             return ServerResponse.createBySuccess(user);

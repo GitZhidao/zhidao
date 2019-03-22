@@ -1,5 +1,6 @@
 package com.zhidao.controller;
 
+import com.zhidao.common.ResponseCode;
 import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
@@ -24,20 +25,33 @@ public class UserController {
     @Autowired
     IUserService iUserService;
 
+    //登陆方法
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password) {
         ServerResponse serverResponse = iUserService.login(username, password);
+        ModelAndView mv = new ModelAndView();
         if (serverResponse.isSuccess()) {
-            ModelAndView mv = new ModelAndView("main");
+            //用户名存在且密码正确
+            mv.setViewName("main");//跳转主界面
             mv.addObject("serverResponse", serverResponse);
             return mv;
         }
+<<<<<<< HEAD
 //        else if (serverResponse.getStatus() == 2) {
 //            ModelAndView mv = new ModelAndView("regist");
 //            mv.addObject("serverResponse", serverResponse);
 //            return mv;
 //        }
         ModelAndView mv = new ModelAndView("redirect:/regist.jsp");
+=======
+        else if (serverResponse.getStatus() == ResponseCode.UnRegist.getCode()) {
+            //用户名不存在
+            mv.setViewName("redirect:/regist.jsp");//跳转注册界面
+            mv.addObject("serverResponse", serverResponse);
+            return mv;
+        }
+        mv.setViewName("redirect:/login.jsp");
+>>>>>>> c18338dc827941f7b59cddd0add493375410a80a
         mv.addObject("serverResponse", serverResponse);
         return mv;
     }
