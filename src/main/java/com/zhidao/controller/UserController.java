@@ -63,5 +63,10 @@ public class UserController {
         modelAndView.addObject("serverResponse",serverResponse);//返回信息
         return modelAndView;
     }
+
+    @RequestMapping(value = "/userinfo",method = RequestMethod.POST)
+    public @ResponseBody User getUserInfo(@ModelAttribute("user") User user){
+        return user;
+    }
 }
 
