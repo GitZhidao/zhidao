@@ -23,21 +23,22 @@ public class UserController {
     @Autowired
     IUserService iUserService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password){
-        ServerResponse serverResponse=iUserService.findUser(username,password);
-        if(serverResponse.isSuccess()){
-            User user= (User) serverResponse.getData();
-
-
-            ModelAndView mv=new ModelAndView("main");
-            mv.addObject("serverResponse",serverResponse);
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        ServerResponse serverResponse = iUserService.login(username, password);
+        if (serverResponse.isSuccess()) {
+            ModelAndView mv = new ModelAndView("main");
+            mv.addObject("serverResponse", serverResponse);
             return mv;
         }
-        ModelAndView mv=new ModelAndView("main");
-        mv.addObject("user",serverResponse.getData());
+//        else if (serverResponse.getStatus() == 2) {
+//            ModelAndView mv = new ModelAndView("regist");
+//            mv.addObject("serverResponse", serverResponse);
+//            return mv;
+//        }
+        ModelAndView mv = new ModelAndView("regist");
+        mv.addObject("serverResponse", serverResponse);
         return mv;
     }
-
-
 }
+

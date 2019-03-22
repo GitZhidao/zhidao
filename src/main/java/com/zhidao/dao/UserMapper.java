@@ -15,5 +15,6 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
+    //查询用户名
     User selectByUsername(String username);
 }

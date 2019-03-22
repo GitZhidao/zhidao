@@ -19,9 +19,11 @@
     where userid = #{userid,jdbcType=INTEGER}
   </select>
     <select id="selectByUsername" resultType="com.zhidao.pojo.User" parameterType="string">
-      select * from z_user where username=#{username}
+      select
+      <include refid="Base_Column_List"/>
+       from z_user where username=#{username}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from z_user
     where userid = #{userid,jdbcType=INTEGER}
   </delete>
