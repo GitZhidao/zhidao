@@ -18,7 +18,8 @@ import javax.servlet.http.HttpSession;
  **/
 @Controller
 @RequestMapping("/user")
-@SessionAttributes(names = {"user"},types = {User.class})
+//管理session中的属性
+@SessionAttributes(names = {"user","serverResponse"},types = {User.class,ServerResponse.class})
 public class UserController {
     @Autowired
     IUserService iUserService;
@@ -39,6 +40,23 @@ public class UserController {
         ModelAndView mv = new ModelAndView("regist");
         mv.addObject("serverResponse", serverResponse);
         return mv;
+    }
+
+    //用户注册时会转到该方法
+    @RequestMapping(value = "/regist",method = RequestMethod.POST)
+    public ModelAndView regist(User user){
+        ServerResponse serverResponse=iUserService.regist(user);
+        ModelAndView modelAndView=new ModelAndView();
+        if(serverResponse.isSuccess()){
+            //注册成功转到登录页面
+            modelAndView.setViewName("redirect:/login.jsp");//不在web-inf下面的jsp只能重定向
+            modelAndView.addObject("serverResponse",serverResponse);//返回信息
+            return modelAndView;
+        }
+        //失败回到注册页面
+        modelAndView.setViewName("redirect:/regist.jsp");
+        modelAndView.addObject("serverResponse",serverResponse);//返回信息
+        return modelAndView;
     }
 }
 

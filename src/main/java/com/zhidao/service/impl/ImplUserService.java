@@ -33,4 +33,18 @@ public class ImplUserService implements IUserService {
         else
             return ServerResponse.createBySuccess(user);
     }
+
+    //注册
+    @Override
+    public ServerResponse<String> regist(User user) {
+        User user2=userMapper.selectByUsername(user.getUsername());
+        if (user2!=null){
+            return ServerResponse.createByErrorMessage("用户名已存在");
+        }
+        int result=userMapper.insert(user);
+        if (result!=0){
+            return  ServerResponse.createBySuccessMessage("注册成功");
+        }
+        return ServerResponse.createByErrorMessage("注册失败");
+    }
 }
