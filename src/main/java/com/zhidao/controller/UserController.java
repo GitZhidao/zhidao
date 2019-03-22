@@ -38,11 +38,11 @@ public class UserController {
         }
         else if (serverResponse.getStatus() == ResponseCode.UnRegist.getCode()) {
             //用户名不存在
-            mv.setViewName("redirect:regist.jsp");//跳转注册界面
+            mv.setViewName("redirect:/regist.jsp");//跳转注册界面
             mv.addObject("serverResponse", serverResponse);
             return mv;
         }
-        mv.setViewName("redirect:login.jsp");
+        mv.setViewName("redirect:/login.jsp");
         mv.addObject("serverResponse", serverResponse);
         return mv;
     }

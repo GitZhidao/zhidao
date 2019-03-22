@@ -23,7 +23,7 @@
     <div class="lowin-wrapper">
         <div class="lowin-box lowin-register">
             <div class="lowin-box-inner">
-                <form action="/user/regist.do" method="get">
+                <form action="/user/regist.do" method="post">
                     <p>创建你的账户</p>
                     <div class="lowin-group">
                         <label>Name</label>
@@ -34,8 +34,8 @@
                         <input type="password" name="password" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
                     <div class="lowin-group">
-                        <label>birthDay</label>
-                        </label><input type="text" name="birthday" readonly  class="lowin-input" id="endDate"/>
+                        <label>email</label>
+                        <input type="password" name="email" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
                     <button class="lowin-btn" type="submit">
                         Sign Up
@@ -55,7 +55,7 @@
 <script type="text/javascript" src="/js/hotel.search.js"></script>
 <script type="text/javascript" src="/js/stay.js"></script>
 <script language="JavaScript">
-    var msg="${param.error}";
+    var msg="${serverResponse.msg}";
     window.onload=layui.use(['layer', 'form'], function(){
         var layer = layui.layer
             ,form = layui.form;

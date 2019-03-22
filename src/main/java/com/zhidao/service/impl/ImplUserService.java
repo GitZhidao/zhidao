@@ -30,11 +30,11 @@ public class ImplUserService implements IUserService {
             ServerResponse serverResponse=ServerResponse.createByErrorCodeMessage(ResponseCode.UnRegist.getCode(),"用户名不存在请注册！");
             return serverResponse;
         }
-        else if(password !=user.getPassword()){
+
+        else if(!password.equals(user.getPassword())){
             //密码不正确
             return ServerResponse.createByErrorMessage("密码错误！");
         }
-        else
             return ServerResponse.createBySuccess(user);
     }
 
