@@ -1,7 +1,6 @@
 package com.zhidao.dao;
 
 import com.zhidao.pojo.User;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -16,6 +15,5 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    //查询用户名
-    User selectByUsername(@Param("username") String username);
+    User selectByUsername(String username);
 }

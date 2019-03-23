@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="/css/css.css"/>
     <link rel="stylesheet" type="text/css" href="/css/jquery.ui.css"/>
     <script src="/layui/layui.js"></script>
-
 </head>
 <body>
 <div class="lowin lowin-blue">

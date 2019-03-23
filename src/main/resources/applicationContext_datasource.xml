@@ -77,8 +77,8 @@
         <property name="mapperInterface" value="com.zhidao.dao.MsgMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
-    <bean id="getMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zhidao.dao.getMsgMapper" />
+    <bean id="GetMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.zhidao.dao.GetMsgMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
     <!--事物管理器-->
