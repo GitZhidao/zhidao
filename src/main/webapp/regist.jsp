@@ -14,6 +14,27 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.ui.css"/>
     <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     <script src="/layui/layui.js"></script>
+    <script language="JavaScript">
+        function Login(){
+            var user=new Object();
+            user.username=$("#username").val();
+            user.password=$("#password").val();
+            user.email=$("#email").val();
+            $.ajax({
+                url:"user/regist.do",
+                type:"POST",
+                data:JSON.stringify(user),
+                contentType:"application/json",
+                async: true,
+                error:function(){
+                    alert("注册失败")
+                },
+                success:function (data) {
+                    alert(data.msg);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="lowin lowin-blue">
@@ -23,7 +44,7 @@
     <div class="lowin-wrapper">
         <div class="lowin-box lowin-register">
             <div class="lowin-box-inner">
-                <form action="/user/regist.do" method="post">
+                <form>
                     <p>创建你的账户</p>
                     <div class="lowin-group">
                         <label>Name</label>
@@ -35,9 +56,9 @@
                     </div>
                     <div class="lowin-group">
                         <label>email</label>
-                        <input type="password" name="email" autocomplete="current-password" required="required" class="lowin-input">
+                        <input type="password" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
-                    <button class="lowin-btn" id="regist_button" type="submit">
+                    <button class="lowin-btn" id="login_btn" type="button" onclick="Login()">
                         Sign Up
                     </button>
 
@@ -48,22 +69,6 @@
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/jquery.ui.js"></script>
-<script type="text/javascript" src="/js/moment.min.js"></script>
-<script type="text/javascript" src="/js/hotel.search.js"></script>
-<script type="text/javascript" src="/js/stay.js"></script>
-<script language="JavaScript">
-    var msg="${serverResponse.msg}";
-    window.onload=layui.use(['layer', 'form'], function(){
-        var layer = layui.layer
-            ,form = layui.form;
-        if (msg.trim()
-        ){
-            layer.msg(msg);
-        }
-    });
-</script>
+</div>+
 </body>
 </html>

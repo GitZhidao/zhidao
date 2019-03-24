@@ -48,7 +48,7 @@ public class ImplUserService implements IUserService {
         int result=userMapper.insert(user);
         if (result!=0){
             return  ServerResponse.createBySuccessMessage("注册成功");
-        }
+       }
         return ServerResponse.createByErrorMessage("注册失败");
     }
 }

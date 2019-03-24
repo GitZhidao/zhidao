@@ -49,20 +49,12 @@ public class UserController {
 
     //用户注册时会转到该方法
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
-    public ModelAndView regist(User user){
-        ServerResponse serverResponse=iUserService.regist(user);
-        ModelAndView modelAndView=new ModelAndView();
-        if(serverResponse.isSuccess()){
-            //注册成功转到登录页面
-            modelAndView.setViewName("redirect:/login.jsp");//不在web-inf下面的jsp只能重定向
-            modelAndView.addObject("serverResponse",serverResponse);//返回信息
-            return modelAndView;
-        }
-        //失败回到注册页面
-        modelAndView.setViewName("redirect:/regist.jsp");
-        modelAndView.addObject("serverResponse",serverResponse);//返回信息
-        return modelAndView;
+    public @ResponseBody ServerResponse<String> regist(@RequestBody User user){
+            ServerResponse serverResponse=iUserService.regist(user);
+            return serverResponse;
     }
 
+////    @RequestMapping("/loginOut")
+//    public ModelAndView loginOut()
 }
 
