@@ -86,4 +86,9 @@
       email = #{email,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+  <update id="updateById" parameterType="com.zhidao.pojo.User">
+    update z_user
+      set password=#{newpassword}
+      where userId=#{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

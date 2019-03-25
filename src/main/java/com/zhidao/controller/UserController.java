@@ -1,5 +1,6 @@
 package com.zhidao.controller;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.zhidao.common.ResponseCode;
 import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
@@ -54,6 +55,20 @@ public class UserController {
             return serverResponse;
     }
 
+    //修改密码 传登陆时的user，修改密码输入时封装的newuser
+    @RequestMapping("/updateuser")
+    public ModelAndView UpdateUser(@ModelAttribute("user") User user,User newuser,@RequestParam("newpassword") String newpassword){
+        ServerResponse serverResponse=iUserService.updateUser(newuser,newpassword);
+        ModelAndView mv = new ModelAndView();
+        if (serverResponse.isSuccess()){
+            //修改成功跳转登陆界面
+            mv.setViewName("redirect:/login.jsp");
+            mv.addObject("serverResponse", serverResponse);
+            return mv;
+        }
+        //修改失败不跳转
+        return mv;
+    }
 ////    @RequestMapping("/loginOut")
 //    public ModelAndView loginOut()
 }

@@ -18,4 +18,7 @@ public interface UserMapper {
 
     //查询用户名
     User selectByUsername(@Param("username") String username);
+
+    //修改密码
+    int updateById(@Param("user") User user,@Param("newpassword") String newpassword);
 }
