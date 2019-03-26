@@ -23,7 +23,6 @@ public class ImplUserService implements IUserService {
     @Override
     public ServerResponse login(String username,String password) {
         User user=userMapper.selectByUsername(username);
-        System.out.println(user.getPassword());
         if (user==null){
             //用户名不存在
             ServerResponse serverResponse=ServerResponse.createByErrorCodeMessage(ResponseCode.UnRegist.getCode(),"用户名不存在请注册！");
@@ -46,7 +45,23 @@ public class ImplUserService implements IUserService {
         int result=userMapper.insert(user);
         if (result!=0){
             return  ServerResponse.createBySuccessMessage("注册成功");
-        }
+       }
         return ServerResponse.createByErrorMessage("注册失败");
+    }
+
+    //修改密码
+    @Override
+    public ServerResponse<User> updateUser(User newuser ,String newpassword) {
+        User user=userMapper.selectByUsername(newuser.getUsername());
+        if (user==null){
+            return  ServerResponse.createByErrorMessage("用户名不存在");
+        }
+        else if(!user.getPassword().equals(newuser.getPassword())) {
+            return ServerResponse.createByErrorMessage("原密码错误");
+        }
+        if (userMapper.updateById(user,newpassword)==0){
+            return ServerResponse.createByError();//修改失败
+        }
+        return ServerResponse.createBySuccess("密码修改成功",user);
     }
 }

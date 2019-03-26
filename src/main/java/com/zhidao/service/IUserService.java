@@ -8,4 +8,6 @@ public interface IUserService {
     ServerResponse<User> login(String username, String password);
     //注册业务
     ServerResponse<String> regist(User user);
+
+    ServerResponse<User> updateUser(User newuser,String newpassword);
 }

@@ -86,4 +86,9 @@
     <include refid="Base_Column_List"/>
     from z_user where username=#{username};
   </select>
+  <update id="updateById" parameterType="com.zhidao.pojo.User">
+    update z_user
+      set password=#{newpassword}
+      where userId=#{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

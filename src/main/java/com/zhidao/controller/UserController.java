@@ -1,13 +1,18 @@
 package com.zhidao.controller;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.zhidao.common.ResponseCode;
 import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
+import com.zhidao.util.JsonXMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * @author:
@@ -25,46 +30,49 @@ public class UserController {
 
     //登陆方法
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    @ResponseBody
+    public ServerResponse Login(@RequestBody User user,HttpSession session) throws Exception {
+        String username=user.getUsername();
+        String password=user.getPassword() ;
         ServerResponse serverResponse = iUserService.login(username, password);
-        ModelAndView mv = new ModelAndView();
-        if (serverResponse.isSuccess()) {
-            //用户名存在且密码正确
-            mv.setViewName("main");//跳转主界面
-            mv.addObject("serverResponse", serverResponse);
-            return mv;
+        if (serverResponse.isSuccess()){
+            session.setAttribute("user",serverResponse.getData());
+            return serverResponse;
         }
-        else if (serverResponse.getStatus() == ResponseCode.UnRegist.getCode()) {
-            //用户名不存在
-            mv.setViewName("redirect:/regist.jsp");//跳转注册界面
-            mv.addObject("serverResponse", serverResponse);
-            return mv;
-        }
-        mv.setViewName("redirect:/login.jsp");
-        mv.addObject("serverResponse", serverResponse);
-        return mv;
+        return  serverResponse;
     }
 
     //用户注册时会转到该方法
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
-    public ModelAndView regist(User user){
-        ServerResponse serverResponse=iUserService.regist(user);
-        ModelAndView modelAndView=new ModelAndView();
-        if(serverResponse.isSuccess()){
-            //注册成功转到登录页面
-            modelAndView.setViewName("redirect:/login.jsp");//不在web-inf下面的jsp只能重定向
-            modelAndView.addObject("serverResponse",serverResponse);//返回信息
-            return modelAndView;
-        }
-        //失败回到注册页面
-        modelAndView.setViewName("redirect:/regist.jsp");
-        modelAndView.addObject("serverResponse",serverResponse);//返回信息
-        return modelAndView;
+    public @ResponseBody ServerResponse<String> regist(@RequestBody User user){
+            ServerResponse serverResponse=iUserService.regist(user);
+            return serverResponse;
     }
 
-    @RequestMapping(value = "/userinfo",method = RequestMethod.POST)
-    public @ResponseBody User getUserInfo(@ModelAttribute("user") User user){
-        return user;
+    //修改密码 传登陆时的user，修改密码输入时封装的newuser
+    @RequestMapping("/updateuser")
+    @ResponseBody
+    public ServerResponse UpdateUser(@RequestBody User newuser,@RequestParam("newpassword") String newpassword,HttpSession session){
+        User user= (User) session.getAttribute("user");
+        if (user==null){
+            return ServerResponse.createByErrorCodeMessage(2,"需要登录");
+        }
+        ServerResponse serverResponse=iUserService.updateUser(newuser,newpassword);
+        return serverResponse;
+    }
+
+    @RequestMapping("/loginOut")
+    public ServerResponse loginOut(@ModelAttribute User user,HttpSession session){
+        session.removeAttribute("user");
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping("/get_user_info")//获取用户信息
+    public ServerResponse getUserInfo(@ModelAttribute("user") User user){
+        if (user!=null){
+            return ServerResponse.createBySuccess(user);
+        }
+        return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
     }
 }
 

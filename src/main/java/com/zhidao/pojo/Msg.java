@@ -9,6 +9,8 @@ public class Msg {
 
     private Date endtime;
 
+    private Date creattime;
+
     private String code;
 
     private String location;
@@ -19,10 +21,11 @@ public class Msg {
 
     private String content;
 
-    public Msg(Integer msgid, String title, Date endtime, String code, String location, String filepath, Integer userid, String content) {
+    public Msg(Integer msgid, String title, Date creattime,Date endtime, String code, String location, String filepath, Integer userid, String content) {
         this.msgid = msgid;
         this.title = title;
         this.endtime = endtime;
+        this.creattime=creattime;
         this.code = code;
         this.location = location;
         this.filepath = filepath;
@@ -96,5 +99,13 @@ public class Msg {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public Date getCreatTime() {
+        return creattime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creattime = creatTime;
     }
 }

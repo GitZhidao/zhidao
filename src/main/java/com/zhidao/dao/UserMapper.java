@@ -1,6 +1,7 @@
 package com.zhidao.dao;
 
 import com.zhidao.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -15,5 +16,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    User selectByUsername(String username);
+    User selectByUsername(@Param("username") String username);
+
+    int updateById(@Param("user") User user,@Param("newpassword") String newpassword);
 }
