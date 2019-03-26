@@ -68,7 +68,7 @@
     </bean>
 
     <!--mapperbean-->
-    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <bean id="UserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.zhidao.dao.UserMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
