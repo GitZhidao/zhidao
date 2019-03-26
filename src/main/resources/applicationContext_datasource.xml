@@ -72,11 +72,11 @@
         <property name="mapperInterface" value="com.zhidao.dao.UserMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
-    <bean id="MsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <bean id="msgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.zhidao.dao.MsgMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
-    <bean id="GetMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <bean id="getMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.zhidao.dao.GetMsgMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
