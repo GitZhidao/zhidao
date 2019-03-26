@@ -28,24 +28,14 @@ public class UserController {
 
     //登陆方法
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView Login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    @ResponseBody
+    public ServerResponse Login(@RequestBody @RequestParam("username") String username, @RequestParam("password") String password,HttpSession session) {
         ServerResponse serverResponse = iUserService.login(username, password);
-        ModelAndView mv = new ModelAndView();
-        if (serverResponse.isSuccess()) {
-            //用户名存在且密码正确
-            mv.setViewName("main");//跳转主界面
-            mv.addObject("serverResponse", serverResponse);
-            return mv;
+        if (serverResponse.isSuccess()){
+            session.setAttribute("user",serverResponse.getData());
+            return serverResponse;
         }
-        else if (serverResponse.getStatus() == ResponseCode.UnRegist.getCode()) {
-            //用户名不存在
-            mv.setViewName("redirect:/regist.jsp");//跳转注册界面
-            mv.addObject("serverResponse", serverResponse);
-            return mv;
-        }
-        mv.setViewName("redirect:/login.jsp");
-        mv.addObject("serverResponse", serverResponse);
-        return mv;
+        return  serverResponse;
     }
 
     //用户注册时会转到该方法
@@ -57,19 +47,28 @@ public class UserController {
 
     //修改密码 传登陆时的user，修改密码输入时封装的newuser
     @RequestMapping("/updateuser")
-    public ModelAndView UpdateUser(@ModelAttribute("user") User user,User newuser,@RequestParam("newpassword") String newpassword){
-        ServerResponse serverResponse=iUserService.updateUser(newuser,newpassword);
-        ModelAndView mv = new ModelAndView();
-        if (serverResponse.isSuccess()){
-            //修改成功跳转登陆界面
-            mv.setViewName("redirect:/login.jsp");
-            mv.addObject("serverResponse", serverResponse);
-            return mv;
+    @ResponseBody
+    public ServerResponse UpdateUser(@RequestBody User newuser,@RequestParam("newpassword") String newpassword,HttpSession session){
+        User user= (User) session.getAttribute("user");
+        if (user==null){
+            return ServerResponse.createByErrorCodeMessage(2,"需要登录");
         }
-        //修改失败不跳转
-        return mv;
+        ServerResponse serverResponse=iUserService.updateUser(newuser,newpassword);
+        return serverResponse;
     }
-////    @RequestMapping("/loginOut")
-//    public ModelAndView loginOut()
+
+    @RequestMapping("/loginOut")
+    public ServerResponse loginOut(@ModelAttribute User user,HttpSession session){
+        session.removeAttribute("user");
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping("/get_user_info")//获取用户信息
+    public ServerResponse getUserInfo(@ModelAttribute("user") User user){
+        if (user!=null){
+            return ServerResponse.createBySuccess(user);
+        }
+        return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
+    }
 }
 

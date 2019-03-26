@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/auth.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-<jsp:include page="/common.jsp"/>
+<jsp:include page="/view/common.jsp"/>
 <div class="msg_list">
     <c:forEach var="oldMsg" items="${oldMsgs}">
             <div class="msg">

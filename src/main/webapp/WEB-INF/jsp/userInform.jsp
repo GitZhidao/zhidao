@@ -14,12 +14,13 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.ui.css"/>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <script src="/layui/layui.js"></script>
+    <
 
 </head>
 <body>
-<jsp:include page="/common.jsp"/>
+<jsp:include page="/view/common.jsp"/>
 <div class="msg-form">
-    <form action="/user/updateUser.do"  method="post" class="form-horizontal m-t" id="commentForm">
+    <form action="/user/updateuser.do"  method="post" class="form-horizontal m-t" id="commentForm">
         <div class="form-group">
             <label class="col-sm-3 control-label">姓名：</label>
             <div class="col-sm-8">

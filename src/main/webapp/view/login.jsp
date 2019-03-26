@@ -10,7 +10,8 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="/css/auth.css">
-    <link rel="stylesheet" href="/layui/css/layui.css">
+
+    <script src="/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
 <div class="lowin lowin-blue">
@@ -20,39 +21,26 @@
     <div class="lowin-wrapper">
         <div class="lowin-box lowin-login">
             <div class="lowin-box-inner">
-                <form action="/user/login.do" method="post">
+                <form>
                     <p>账户登录</p>
                     <div class="lowin-group">
                         <label>用户名<a href="#" class="login-back-link">Sign in?</a></label>
-                        <input type="text"  name="username" autocomplete="username" required="required" class="lowin-input" id="username" autofocus="autofocus">
+                        <input type="text"  name="username" id="username" autocomplete="username" required="required" class="lowin-input"  autofocus="autofocus">
                     </div>
                     <div class="lowin-group password-group">
                         <label>密码</label>
-                        <input type="password" name="password" autocomplete="current-password"  required="required" class="lowin-input" id="password">
+                        <input type="password" id="password" name="password" autocomplete="current-password"  required="required" class="lowin-input" >
                     </div>
-                    <button class="lowin-btn login-btn" type="submit">
+                    <button class="lowin-btn login-btn" type="button" onclick="login()">
                         Sign In
                     </button>
-
                     <div class="text-foot">
-                        点击注册 <a href="/regist.jsp" class="register-link">Register</a>
+                        点击注册 <a href="/view/regist.jsp" class="register-link">Register</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<script src="/layui/layui.js"></script>
-<script language="JavaScript">
-    var msg="${serverResponse.msg}";
-    window.onload=layui.use(['layer', 'form'], function(){
-        var layer = layui.layer
-            ,form = layui.form;
-        if (msg.trim()){
-            layer.msg(msg);
-        }
-    });
-</script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <head>
     <title>Title</title>
 </head>
-<body  style="background: url('images/msgback.jpg');background-repeat: no-repeat;background-size: cover">
+<body  style="background: url('../images/msgback.jpg');background-repeat: no-repeat;background-size: cover">
     <div style="margin-top: 300px">
         <p style="text-align: center;font-size: 30px">请点击信息查看内容</p>
     </div>

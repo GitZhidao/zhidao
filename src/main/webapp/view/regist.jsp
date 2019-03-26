@@ -10,31 +10,9 @@
 <head>
     <title>账户注册</title>
     <link rel="stylesheet" type="text/css" href="/css/auth.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/css.css"/>
     <link rel="stylesheet" type="text/css" href="/css/jquery.ui.css"/>
     <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-    <script src="/layui/layui.js"></script>
-    <script language="JavaScript">
-        function Login(){
-            var user=new Object();
-            user.username=$("#username").val();
-            user.password=$("#password").val();
-            user.email=$("#email").val();
-            $.ajax({
-                url:"user/regist.do",
-                type:"POST",
-                data:JSON.stringify(user),
-                contentType:"application/json",
-                async: true,
-                error:function(){
-                    alert("注册失败")
-                },
-                success:function (data) {
-                    alert(data.msg);
-                }
-            });
-        }
-    </script>
+    <script src="/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
 <div class="lowin lowin-blue">
@@ -58,12 +36,11 @@
                         <label>email</label>
                         <input type="password" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
-                    <button class="lowin-btn" id="login_btn" type="button" onclick="Login()">
+                    <button class="lowin-btn" id="login_btn" type="button" onclick="regist()">
                         Sign Up
                     </button>
-
                     <div class="text-foot">
-                        已有账号？点击登录<a href="/login.jsp" class="login-link">Login</a>
+                        已有账号？点击登录<a href="/view/login.jsp" class="login-link">Login</a>
                     </div>
                 </form>
             </div>

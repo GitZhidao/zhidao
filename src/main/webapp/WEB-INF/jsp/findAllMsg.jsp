@@ -16,7 +16,7 @@
     <script src="/layui/layui.js"></script>
 </head>
 <body>
-<jsp:include page="/common.jsp"/>
+<jsp:include page="/view/common.jsp"/>
 <div class="msg_list">
     <c:forEach var="msg" items="${msgs}">
         <a href="/msg/getMsg.do?msgId=${msg.msgId}" target="msgFrame">
@@ -41,7 +41,7 @@
     </c:forEach>
 </div>
 <div class="msg_leirong">
-    <iframe name="msgFrame" class="msgFrame" frameborder="none" src="/welcome.jsp"/>
+    <iframe name="msgFrame" class="msgFrame" frameborder="none" src="/view/welcome.jsp"/>
 </div>
 </body>
 </html>
