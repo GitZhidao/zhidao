@@ -14,7 +14,7 @@
     id, userid, msgid, categoryname, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from z_getmsg
     where id = #{id,jdbcType=VARCHAR}
@@ -24,9 +24,9 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zhidao.pojo.GetMsg" >
-    insert into z_getmsg (id, userid, msgid, 
+    insert into z_getmsg (id, userid, msgid,
       categoryname, status)
-    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{msgid,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{msgid,jdbcType=INTEGER},
       #{categoryname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zhidao.pojo.GetMsg" >

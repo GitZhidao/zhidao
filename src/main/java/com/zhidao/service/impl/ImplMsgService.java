@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImplMsgService implements IMsgService {
     @Autowired
-    MsgMapper msgMapper;
+   MsgMapper msgMapper;
     @Override
     public ServerResponse<String> addMsg(Msg msg) {
         int row=msgMapper.insertSelective(msg);
