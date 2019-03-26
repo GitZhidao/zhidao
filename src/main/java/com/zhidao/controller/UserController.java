@@ -6,6 +6,7 @@ import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
 import com.zhidao.util.JsonXMLUtils;
+import com.zhidao.util.RandNumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,6 @@ import java.util.Map;
 public class UserController {
     @Autowired
     IUserService iUserService;
-
     //登陆方法
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
