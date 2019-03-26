@@ -1,6 +1,6 @@
 package com.zhidao.pojo;
 
-public class getMsg {
+public class GetMsg {
     private String id;
 
     private Integer userid;
@@ -11,7 +11,7 @@ public class getMsg {
 
     private Integer status;
 
-    public getMsg(String id, Integer userid, Integer msgid, String categoryname, Integer status) {
+    public GetMsg(String id, Integer userid, Integer msgid, String categoryname, Integer status) {
         this.id = id;
         this.userid = userid;
         this.msgid = msgid;
@@ -19,7 +19,7 @@ public class getMsg {
         this.status = status;
     }
 
-    public getMsg() {
+    public GetMsg() {
         super();
     }
 

@@ -5,12 +5,14 @@ import com.zhidao.common.ResponseCode;
 import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
+import com.zhidao.util.JsonXMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * @author:
@@ -29,7 +31,9 @@ public class UserController {
     //登陆方法
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse Login(@RequestBody @RequestParam("username") String username, @RequestParam("password") String password,HttpSession session) {
+    public ServerResponse Login(@RequestBody User user,HttpSession session) throws Exception {
+        String username=user.getUsername();
+        String password=user.getPassword() ;
         ServerResponse serverResponse = iUserService.login(username, password);
         if (serverResponse.isSuccess()){
             session.setAttribute("user",serverResponse.getData());

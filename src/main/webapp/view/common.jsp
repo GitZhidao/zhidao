@@ -9,7 +9,7 @@
 <div id="content">
     <div class="head">
         <div class="con">
-            <img src="/images/zhidao.png" width="100%" height="100%">
+            <img src="/images/newicon.jpg" width="100%" height="100%">
         </div>
         <h1 style="margin-left: 90px">信息管理</h1>
     </div>

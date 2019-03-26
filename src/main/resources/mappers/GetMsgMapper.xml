@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhidao.dao.getMsgMapper" >
-  <resultMap id="BaseResultMap" type="com.zhidao.pojo.getMsg" >
+<mapper namespace="com.zhidao.dao.GetMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidao.pojo.GetMsg" >
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -23,13 +23,13 @@
     delete from z_getmsg
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zhidao.pojo.getMsg" >
+  <insert id="insert" parameterType="com.zhidao.pojo.GetMsg" >
     insert into z_getmsg (id, userid, msgid, 
       categoryname, status)
     values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{msgid,jdbcType=INTEGER}, 
       #{categoryname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.zhidao.pojo.getMsg" >
+  <insert id="insertSelective" parameterType="com.zhidao.pojo.GetMsg" >
     insert into z_getmsg
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -66,7 +66,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhidao.pojo.getMsg" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidao.pojo.GetMsg" >
     update z_getmsg
     <set >
       <if test="userid != null" >
@@ -84,7 +84,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhidao.pojo.getMsg" >
+  <update id="updateByPrimaryKey" parameterType="com.zhidao.pojo.GetMsg" >
     update z_getmsg
     set userid = #{userid,jdbcType=INTEGER},
       msgid = #{msgid,jdbcType=INTEGER},
