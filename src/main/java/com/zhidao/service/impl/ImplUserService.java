@@ -5,6 +5,7 @@ import com.zhidao.common.ServerResponse;
 import com.zhidao.dao.UserMapper;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
+import com.zhidao.util.RandNumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
