@@ -2,7 +2,6 @@ package com.zhidao.util;
 
 import com.zhidao.pojo.Msg;
 
-import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -33,6 +32,15 @@ public class DateTimeUtils {
     public static int dateToint(Date date){
         return Integer.parseInt(dateTostr(date));
     }
+
+    /*date转sqldate
+    * Wed Mar 27 22:11:52 CST 2019转2019-03-27 12:05:45.161
+    * */
+    public static  Date dateTosqldate(Date date){
+        Date sqlDate = new java.sql.Timestamp(date.getTime());
+        return sqlDate;
+    }
+
 
     //结束时间距当前时间临近排序 冒泡法
     public static List<Msg> rankDate(List<Msg> msgList){
