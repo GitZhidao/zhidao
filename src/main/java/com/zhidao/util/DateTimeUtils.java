@@ -6,37 +6,24 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DateTimeUtils {
 
+    //标准格式
     public static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 
-
-    public static Date strToDate(String dateTimeStr,String formatStr){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(formatStr);
-        DateTime dateTime = dateTimeFormatter.parseDateTime(dateTimeStr);
-        return dateTime.toDate();
-    }
-
-    public static String dateToStr(Date date,String formatStr){
-        if(date == null){
-            return StringUtils.EMPTY;
-        }
-        DateTime dateTime = new DateTime(date);
-        return dateTime.toString(formatStr);
-    }
-
-    public static Date strToDate(String dateTimeStr){
+    //字符转时间
+    public static Date strToDate(String dateTimeStr) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(STANDARD_FORMAT);
         DateTime dateTime = dateTimeFormatter.parseDateTime(dateTimeStr);
         return dateTime.toDate();
     }
 
+    //时间转字符
     public static String dateToStr(Date date){
         if(date == null){
             return StringUtils.EMPTY;
@@ -45,9 +32,9 @@ public class DateTimeUtils {
         return dateTime.toString(STANDARD_FORMAT);
     }
 
+    //CTS转yyyy-mm-dd HH:mm:ss
     public static Date dateToDate(Date date){
-        Date sqlDate=new java.sql.Timestamp(date.getTime());
-        return sqlDate;
+        return new java.sql.Timestamp(date.getTime());
     }
 
 
@@ -55,6 +42,8 @@ public class DateTimeUtils {
     public static int dateToint(Date date){
         return Integer.parseInt(dateToStr(date));
     }
+
+
 
     //结束时间距当前时间临近排序 冒泡法
     public static List<Msg> rankDate(List<Msg> msgList){
