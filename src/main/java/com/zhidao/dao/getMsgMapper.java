@@ -1,6 +1,9 @@
 package com.zhidao.dao;
 
 import com.zhidao.pojo.GetMsg;
+import com.zhidao.pojo.Msg;
+
+import java.util.List;
 
 public interface GetMsgMapper {
     int deleteByPrimaryKey(String id);
