@@ -5,16 +5,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DateTimeUtils {
 
     //标准格式
-    public static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
-
+    private static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     //字符转时间
     public static Date strToDate(String dateTimeStr) {
@@ -37,18 +33,15 @@ public class DateTimeUtils {
         return new java.sql.Timestamp(date.getTime());
     }
 
-
     //date转int
     public static int dateToint(Date date){
         return Integer.parseInt(dateToStr(date));
     }
 
-
-
     //结束时间距当前时间临近排序 冒泡法
     public static List<Msg> rankDate(List<Msg> msgList){
         Date date=new Date();//获取当前时间
-        Msg msg = null;
+        Msg msg;
         for(int i=0;i<msgList.size()-1;i++){
             for (int j=0;j<msgList.size()-1-i;j++){
                 long date1=msgList.get(j).getEndtime().getTime()-date.getTime();
