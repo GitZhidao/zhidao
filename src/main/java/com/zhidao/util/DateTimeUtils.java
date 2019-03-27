@@ -5,8 +5,7 @@ import com.zhidao.pojo.Msg;
 import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class DateTimeUtils {
 
@@ -31,12 +30,12 @@ public class DateTimeUtils {
         return Integer.parseInt(dateTostr(date));
     }
 
-    //时间排序
+    //结束时间距当前时间临近排序 冒泡法
     public static List<Msg> rankDate(List<Msg> msgList){
         Date date=new Date();//获取当前时间
         Msg msg = null;
-        for(int i=0;i<msgList.size();i++){
-            for (int j=0;j<msgList.size()-i;j++){
+        for(int i=0;i<msgList.size()-1;i++){
+            for (int j=0;j<msgList.size()-1-i;j++){
                 long date1=msgList.get(j).getEndtime().getTime()-date.getTime();
                 long date2=msgList.get(j+1).getEndtime().getTime()-date.getTime();
                 if (date1>date2){
@@ -48,5 +47,4 @@ public class DateTimeUtils {
         }
         return msgList;
     }
-
 }
