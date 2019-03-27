@@ -2,19 +2,15 @@ package com.zhidao.pojo;
 
 /**
  * @author:
- * @data: 2019/3/27 17:19
+ * @data: 2019/3/28 0:36
  * @description:
  * @Version: 1.0
  **/
 public class GetMsg {
     private String id;
-
     private Integer userid;
-
     private Integer msgid;
-
     private String categoryname;
-
     private Integer status;
 
     public GetMsg(String id, Integer userid, Integer msgid, String categoryname, Integer status) {
@@ -26,11 +22,10 @@ public class GetMsg {
     }
 
     public GetMsg() {
-        super();
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -38,7 +33,7 @@ public class GetMsg {
     }
 
     public Integer getUserid() {
-        return userid;
+        return this.userid;
     }
 
     public void setUserid(Integer userid) {
@@ -46,7 +41,7 @@ public class GetMsg {
     }
 
     public Integer getMsgid() {
-        return msgid;
+        return this.msgid;
     }
 
     public void setMsgid(Integer msgid) {
@@ -54,7 +49,7 @@ public class GetMsg {
     }
 
     public String getCategoryname() {
-        return categoryname;
+        return this.categoryname;
     }
 
     public void setCategoryname(String categoryname) {
@@ -62,7 +57,7 @@ public class GetMsg {
     }
 
     public Integer getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(Integer status) {
