@@ -40,6 +40,11 @@
     from z_msg
     where msgid = #{msgid,jdbcType=INTEGER}
   </select>
+  <select id="selectAllMsgByUserId" resultType="com.zhidao.pojo.Msg" parameterType="integer">
+      select
+      <include refid="Base_Column_List"/>
+      from z_msg where userid=#{userid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from z_msg
     where msgid = #{msgid,jdbcType=INTEGER}

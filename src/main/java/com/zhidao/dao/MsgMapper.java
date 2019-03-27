@@ -2,6 +2,8 @@ package com.zhidao.dao;
 
 import com.zhidao.pojo.Msg;
 
+import java.util.List;
+
 public interface MsgMapper {
     int deleteByPrimaryKey(Integer msgid);
 
@@ -16,4 +18,7 @@ public interface MsgMapper {
     int updateByPrimaryKeyWithBLOBs(Msg record);
 
     int updateByPrimaryKey(Msg record);
+
+    //查询某一用户发送的所有时间。
+    List<Msg> selectAllMsgByUserId(int userid);
 }
