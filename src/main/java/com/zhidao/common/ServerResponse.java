@@ -13,7 +13,7 @@ public class ServerResponse<T> implements Serializable {
     private T data;
     private String msg;
 
-    public ServerResponse(int status){
+    private ServerResponse(int status){
         this.status=status;
     }
     private ServerResponse(int status,T data)

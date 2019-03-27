@@ -9,14 +9,14 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="/css/auth.css">
-    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-    <script src="/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
 <div class="lowin lowin-blue">
     <div class="lowin-brand">
-        <img style="width: 100%;height: 100%;border-radius: 50%" src="/images/newicon.jpg" alt="logo">
+        <img style="width: 100%;height: 100%;border-radius: 50%" src="${pageContext.request.contextPath}/images/newicon.jpg" alt="logo">
     </div>
     <div class="lowin-wrapper">
         <div class="lowin-box lowin-login">
