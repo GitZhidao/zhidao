@@ -21,4 +21,7 @@ public interface MsgMapper {
 
     //查询某一用户发送的所有时间。
     List<Msg> selectAllMsgByUserId(int userid);
+
+    //根据code查询msgid
+    Msg selectMsgByCode(String code);
 }

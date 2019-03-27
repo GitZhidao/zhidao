@@ -1,5 +1,7 @@
 package com.zhidao.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Msg {
@@ -7,8 +9,10 @@ public class Msg {
 
     private String title;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endtime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date creattime;
 
     private String code;

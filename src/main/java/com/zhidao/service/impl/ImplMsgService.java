@@ -4,6 +4,7 @@ import com.zhidao.common.ServerResponse;
 import com.zhidao.dao.MsgMapper;
 import com.zhidao.pojo.Msg;
 import com.zhidao.service.IMsgService;
+import com.zhidao.util.DateTimeUtils;
 import com.zhidao.util.RandNumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ImplMsgService implements IMsgService {
     @Override
     public ServerResponse<String> addMsg(Msg msg) {
         msg.setCode(RandNumberUtils.randNumber());
-        msg.setCreatTime(new Date());
+        msg.setCreatTime(DateTimeUtils.dateToDate(new Date()));
         int row=msgMapper.insertSelective(msg);
         if (row==0){
             return ServerResponse.createByError();
@@ -36,8 +37,8 @@ public class ImplMsgService implements IMsgService {
     @Override
     public ServerResponse<List<Msg>> findAllMsg(int userid) {
         List<Msg> msgs=msgMapper.selectAllMsgByUserId(userid);
-
         if (msgs!=null){
+            msgs= DateTimeUtils.rankDate(msgs);
             return  ServerResponse.createBySuccess(msgs);
         }
         return ServerResponse.createByErrorMessage("添加失败");

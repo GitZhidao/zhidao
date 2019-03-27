@@ -1,6 +1,10 @@
 package com.zhidao.util;
 
 import com.zhidao.pojo.Msg;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.xml.crypto.Data;
 import java.text.ParseException;
@@ -9,25 +13,47 @@ import java.util.*;
 
 public class DateTimeUtils {
 
-    //SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SS"); //时间格式 2019-03-27 12:05:45.161
+    public static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    //String转date
-    public static Date  strTodate(String string) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
-        Date date =  sdf.parse(string);
-        return date;
+
+
+    public static Date strToDate(String dateTimeStr,String formatStr){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(formatStr);
+        DateTime dateTime = dateTimeFormatter.parseDateTime(dateTimeStr);
+        return dateTime.toDate();
     }
 
-    //date转string
-    public static String  dateTostr(Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
-        String string=sdf.format(date);
-        return string;
+    public static String dateToStr(Date date,String formatStr){
+        if(date == null){
+            return StringUtils.EMPTY;
+        }
+        DateTime dateTime = new DateTime(date);
+        return dateTime.toString(formatStr);
     }
+
+    public static Date strToDate(String dateTimeStr){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(STANDARD_FORMAT);
+        DateTime dateTime = dateTimeFormatter.parseDateTime(dateTimeStr);
+        return dateTime.toDate();
+    }
+
+    public static String dateToStr(Date date){
+        if(date == null){
+            return StringUtils.EMPTY;
+        }
+        DateTime dateTime = new DateTime(date);
+        return dateTime.toString(STANDARD_FORMAT);
+    }
+
+    public static Date dateToDate(Date date){
+        Date sqlDate=new java.sql.Timestamp(date.getTime());
+        return sqlDate;
+    }
+
 
     //date转int
     public static int dateToint(Date date){
-        return Integer.parseInt(dateTostr(date));
+        return Integer.parseInt(dateToStr(date));
     }
 
     //结束时间距当前时间临近排序 冒泡法

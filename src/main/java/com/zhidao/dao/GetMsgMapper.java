@@ -17,6 +17,4 @@ public interface GetMsgMapper {
     int updateByPrimaryKeySelective(GetMsg record);
 
     int updateByPrimaryKey(GetMsg record);
-
-
 }
