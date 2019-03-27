@@ -49,4 +49,17 @@ function login(){
     });
 }
 
+function loginOut() {
+    $.ajax({
+        url:"../user/loginOut.do",
+        type:"Get",
+        contentType:"application/json",
+        error:function(){
+            alert("失败");
+        },
+        success:function (data) {
+          window.location.href="/view/login.jsp";
+        }
+    })
+}
 

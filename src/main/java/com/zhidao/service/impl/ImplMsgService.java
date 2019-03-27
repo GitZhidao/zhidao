@@ -6,6 +6,7 @@ import com.zhidao.pojo.Msg;
 import com.zhidao.service.IMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author: lv
@@ -25,4 +26,5 @@ public class ImplMsgService implements IMsgService {
         }
         return ServerResponse.createBySuccessMessage("发布成功");
     }
+
 }

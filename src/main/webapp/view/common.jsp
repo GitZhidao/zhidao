@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <div id="content">
     <div class="head">
         <div class="con">
@@ -32,7 +33,7 @@
         </div>
 
             <div id="menu-foot">
-                <a id="loginOut" class="loginOut" href="/user/loginOut.do">退出登录</a>
+                <button id="loginOut" class="loginOut" type="button" onclick="loginOut()">退出登录</button>
             </div>
     </div >
 

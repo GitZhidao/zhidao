@@ -1,21 +1,14 @@
 package com.zhidao.controller;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-import com.zhidao.common.ResponseCode;
 import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
-import com.zhidao.util.JsonXMLUtils;
-import com.zhidao.util.RandNumberUtils;
-import org.omg.CORBA.Request;
-import org.omg.CORBA.ServerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * @author:
@@ -26,7 +19,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 //管理session中的属性
-@SessionAttributes(names = {"user","serverResponse"},types = {User.class,ServerResponse.class})
 public class UserController {
     @Autowired
     IUserService iUserService;
@@ -64,7 +56,8 @@ public class UserController {
     }
 
     @RequestMapping("/loginOut")
-    public ServerResponse loginOut(@ModelAttribute User user,HttpSession session){
+    @ResponseBody
+    public ServerResponse loginOut(@ModelAttribute User user, HttpSession session){
         session.removeAttribute("user");
         return ServerResponse.createBySuccess();
     }
