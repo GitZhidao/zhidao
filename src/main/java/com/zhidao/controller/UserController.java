@@ -7,6 +7,8 @@ import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
 import com.zhidao.util.JsonXMLUtils;
 import com.zhidao.util.RandNumberUtils;
+import org.omg.CORBA.Request;
+import org.omg.CORBA.ServerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

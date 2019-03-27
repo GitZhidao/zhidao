@@ -47,6 +47,6 @@
     </filter>
     <filter-mapping>
         <filter-name>MyFilter</filter-name>
-        <url-pattern>/*</url-pattern> <!--拦截所以请求-->
+        <url-pattern>/view/login.jsp</url-pattern> <!--拦截请求-->
     </filter-mapping>
 </web-app>

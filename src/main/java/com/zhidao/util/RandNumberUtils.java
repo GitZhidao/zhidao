@@ -9,7 +9,8 @@ public class RandNumberUtils {
     public static String randNumber() {
         //用当前时间精确到毫秒，截取末尾五位
         Date date=new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmssSS");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmssSS"); //时间格式 20190327120545161
+        //SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SS"); //时间格式 2019-03-27 12:05:45.161
         String  formDate =sdf.format(date);
         String no = formDate.substring(12);//取末尾五位
         return "DX"+no;//返回DX开头的编号
