@@ -33,8 +33,11 @@ public class MsgController {
             return ServerResponse.createByErrorMessage("用户未登录无法发送");
         }
         msg.setUserid(user.getUserid());
-        ServerResponse serverResponse=iMsgService.addMsg(msg);
-        return serverResponse;
+        return iMsgService.addMsg(msg);
     }
+
+    //查找所以已发送信息
+//    @RequestMapping(value = "/findAllMsg")
+//    public ServerResponse find
 
 }

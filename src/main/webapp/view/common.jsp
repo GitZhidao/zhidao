@@ -12,7 +12,7 @@
         <div class="con">
             <img src="/images/newicon.jpg" width="100%" height="100%">
         </div>
-        <h1 style="margin-left: 90px">信息管理</h1>
+        <h1 style="margin-left: 90px">Code is everything</h1>
     </div>
     <div class="menu">
         <div class="menu_head">

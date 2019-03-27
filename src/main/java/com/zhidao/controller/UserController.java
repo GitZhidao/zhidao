@@ -4,7 +4,6 @@ import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +38,7 @@ public class UserController {
     //用户注册时会转到该方法
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
     public @ResponseBody ServerResponse<String> regist(@RequestBody User user){
-            ServerResponse serverResponse=iUserService.regist(user);
-            return serverResponse;
+        return iUserService.regist(user);
     }
 
     //修改密码 传登陆时的user，修改密码输入时封装的newuser
@@ -51,8 +49,7 @@ public class UserController {
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"需要登录");
         }
-        ServerResponse serverResponse=iUserService.updateUser(newuser,newpassword);
-        return serverResponse;
+        return iUserService.updateUser(newuser, newpassword);
     }
 
     @RequestMapping("/loginOut")
