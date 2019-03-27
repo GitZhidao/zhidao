@@ -9,16 +9,20 @@ import java.util.*;
 
 public class DateTimeUtils {
 
-    //SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SS"); //时间格式 2019-03-27 12:05:45.161
+    //yyyy-MM-dd hh:mm:ss.SS时间格式 2019-03-27 12:05:45.161
 
-    //String转date
+    /*String转date
+    2019-03-27 12:05:45.161转Wed Mar 27 22:11:52 CST 2019
+    */
     public static Date  strTodate(String string) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
         Date date =  sdf.parse(string);
         return date;
     }
 
-    //date转string
+    /*date转string
+    Wed Mar 27 22:11:52 CST 2019转2019-03-27 12:05:45.161
+    */
     public static String  dateTostr(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
         String string=sdf.format(date);
