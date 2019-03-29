@@ -47,7 +47,7 @@ public class UserController {
     public ServerResponse UpdateUser(@RequestBody User newuser,@RequestParam("newpassword") String newpassword,HttpSession session){
         User user= (User) session.getAttribute("user");
         if (user==null){
-            return ServerResponse.createByErrorCodeMessage(2,"需要登录");
+            return ServerResponse.createByErrorCodeMessage(2,"用户需要登录");
         }
         return iUserService.updateUser(newuser, newpassword);
     }
@@ -60,9 +60,13 @@ public class UserController {
     }
 
     @RequestMapping("/get_user_info")//获取用户信息
-    public ServerResponse getUserInfo(@ModelAttribute("user") User user){
+    @ResponseBody
+    public ServerResponse getUserInfo(HttpSession httpSession){
+        User user= (User) httpSession.getAttribute("user");
         if (user!=null){
+            System.out.println(user.getPassword());
             return ServerResponse.createBySuccess(user);
+
         }
         return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
     }

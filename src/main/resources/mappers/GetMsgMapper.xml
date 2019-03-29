@@ -19,6 +19,11 @@
         from z_getmsg
         where id = #{id,jdbcType=VARCHAR}
     </select>
+    <select id="selectByMsgId" resultType="com.zhidao.pojo.GetMsg">
+        select
+        <include refid="Base_Column_List"/>
+        from z_getmsg where msgid=#{msgId}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from z_getmsg
     where id = #{id,jdbcType=VARCHAR}

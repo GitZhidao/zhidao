@@ -27,7 +27,7 @@ public class MsgController {
     public ServerResponse<String> sendMsg(@RequestBody Msg msg, HttpSession session){
         User user= (User) session.getAttribute("user");
         if (user == null) {
-            return ServerResponse.createByErrorMessage("用户未登录无法发送");
+            return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
         msg.setUserid(user.getUserid());
         return iMsgService.addMsg(msg);
@@ -42,5 +42,4 @@ public class MsgController {
         }
         return iMsgService.findAllMsg(user.getUserid());
     }
-
 }

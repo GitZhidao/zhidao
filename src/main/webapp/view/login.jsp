@@ -35,7 +35,7 @@
                         Sign In
                     </button>
                     <div class="text-foot">
-                        点击注册 <a href="/view/regist.jsp" class="register-link">Register</a>
+                        点击注册 <a href="${pageContext.request.contextPath}/view/regist.jsp" class="register-link">Register</a>
                     </div>
                 </form>
             </div>

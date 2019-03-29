@@ -9,112 +9,112 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/auth.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/css.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <script src="/layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/auth.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.ui.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=e671a108fe7919776736fc2a06dbe257"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <style type="text/css">
+        /*删除高德地图的logo*/
+        .amap-logo {
+            right: 0 !important;
+            left: auto !important;
+            display: none;
+        }
 
+        .amap-copyright {
+            right: 70px !important;
+            left: auto !important;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="common.jsp"/>
-<div class="msg-form">
-    <form action="/msg/addMsg.do"  method="get" class="form-horizontal m-t" id="commentForm">
+<div class="send_msg-form">
+    <p style="font-size: larger">添加信息</p>
+    <form action="${pageContext.request.contextPath}/msg/addMsg.do"  method="get" class="form-horizontal m-t" id="commentForm">
         <div class="form-group">
             <label class="col-sm-3 control-label">标题：</label>
             <div class="col-sm-8">
-                <input  style="text-align:center;width:300px;border-color:black;border:1px solid;border-radius: 4px;padding: 8px" id="cname"  name="title"  minlength="2" type="text" class="form-control" name="title" required="required">
+                <input  id="cname"  name="title"  minlength="2" type="text" class="send_msg_input" name="title" required="required">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">内容：</label>
                 <div class="col-sm-8">
-            <textarea style="width: 300px;height: 100px;padding:2px;border-color:black;border:1px solid;border-radius: 4px" name="msg" cols="40" required="required" rows="4"  style="OVERFLOW: hidden"></textarea>
+            <textarea class="send_msg_input" name="msg" cols="40" required="required" rows="4"  style="OVERFLOW: hidden"></textarea>
                 </div>
         </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">开始时间：</label>
-                <div class="col-sm-8">
-                    <input style="width: 300px;padding:8px;border-color:black;border:1px solid;border-radius: 4px;" id="startDate" name="creatTime" class="form-control" required="" aria-required="true" ></input>
-                 </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">开始时间：</label>
+            <div class="col-sm-8">
+                <input class="send_msg_input"  id="startime" name="creatTime"  required="" aria-required="true" ></input>
+             </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">开始时间：</label>
+            <div class="col-sm-8">
+                <input class="send_msg_input"  id="endtime" name="creatTime"  required="" aria-required="true" ></input>
             </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">附加文件：</label>
+            <div class="col-sm-8">
+                <input class="send_msg_input"  id="fileload" name="creatTime"  required="" aria-required="true" ></input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">位置：</label>
+            <div class="col-sm-8">
+                <input class="send_msg_input"  id="local" name="creatTime"  required="" aria-required="true" ></input>
+            </div>
+        </div>
         <div>
-            <label style="margin-left: -7px" class="col-sm-3 control-label">提醒时间：</label></br>
-            <input style="margin-left:110px;margin-top:-25px;width: 300px;padding:8px;border-color:black;border:1px solid;border-radius: 4px;" id="endDate" name="endtime" required="required" >
-            </div>
-            <div class="form-group">
+
             <div class="col-sm-4 col-sm-offset-3">
             <button class="btn btn-primary" type="submit">添加</button>
             </div>
         </div>
     </form>
-    <form action="/msg/addMsgByExcel.do"  enctype="multipart/form-data" method="post" class="form-horizontal m-t" id="fileForm" novalidate="novalidate">
-        <label style="margin-left: -7px" class="col-sm-3 control-label">通过文件上传：</label></br>
-        <input style="margin-left: 120px" type="file" name="file"  id="file" value="请选择文件">
-        <div class="form-group">
-            <div class="col-sm-4 col-sm-offset-3">
-                <button style="margin-left:-40px "  class="btn btn-primary" onclick="importUsers()" type="submit">上传</button>
-            </div>
-        </div>
-    </form>
 </div>
-
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/jquery.ui.js"></script>
-<script type="text/javascript" src="/js/moment.min.js"></script>
-<script type="text/javascript" src="/js/hotel.search.js"></script>
-<script type="text/javascript" src="/js/stay.js"></script>
-<script language="JavaScript">
-    function importUsers(){
-        var FormDatas=new FormData($("#fileForm")[0]);
-        var fileName=$("#file").val();
-        if(fileName == '') {
-            alert('请选择文件！', {
-                icon: MSG_CHECK,
-                time: MSG_TIME
-            });
-            return false;
-        }
-        var fileType = (fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length)).toLowerCase();
-        if (fileType != 'xlsx') {
-            alert('文件格式不正确！',{
-                icon:MSG_CHECK,
-                time:MSG_TIME
-            });
-            return false;
-        }
-        $.ajax({
-            type:'post',
-            url:'',
-            async : false,
-            cache : false,
-            contentType : false,
-            processData : false,
-            data:FormDatas,
-            success: function(data){
-                if(data == "error"){
-                    layer.msg("文件导入失败，请重新上传！", {
-                        icon: OPER_SB,
-                        shade: [0.3, '#393D49'], // 透明度  颜色
-                        time:5000
-                    });
-                    return false;
-                }else{
-                    layer.msg("文件导入成功！", {
-                        icon: OPER_CG,
-                        shade: [0.3, '#393D49'], // 透明度  颜色
-                        time:5000
-                    });
-                    window.location.reload();
-                    return false;
-                }
-            },
-            error : function(data){
-                console.log(data.msg);
-            }
+<div class="getmap">
+    <div id='container' style="height:100%;width: 100%"></div>
+    <div id="tip"></div>
+    <script type="text/javascript">
+        var map, geolocation;
+        //加载地图，调用浏览器定位服务
+        map = new AMap.Map('container', {
+            resizeEnable: true
         });
-    }
-</script>
+        map.plugin('AMap.Geolocation', function () {
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                timeout: 10000000,          //超过10秒后停止定位，默认：无穷大
+                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                zoomToAccuracy: false,      //定位区域
+                buttonPosition: 'RB'
+            });
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition();
+            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        });
+        //解析定位结果
+        function onComplete(data) {
+            var str = ['定位成功'];
+            str.push('经度：' + data.position.getLng());
+            str.push('纬度：' + data.position.getLat());
+            str.push('精度：' + data.accuracy + ' 米');
+            str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+            document.getElementById('tip').innerHTML = str.join('<br>');
+        }
+        //解析定位错误信息
+        function onError(data) {
+            document.getElementById('tip').innerHTML = '定位失败';
+        }
+    </script>
+</div>
 </body>
 </html>

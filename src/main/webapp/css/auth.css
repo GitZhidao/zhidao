@@ -142,7 +142,7 @@ body {
 	margin-bottom: 5px;
 	display: inline-block;
 	width: 100%;
-	color: var(--color-semidark);
+	color: rgba(68, 160, 179, .5);
 	font-weight: 700;
 }
 
@@ -151,13 +151,17 @@ body {
 }
 
 .lowin .lowin-box .lowin-input {
-	background-color: var(--color-grey);
-	color: var(--color-dark);
+	background-color: rgba(68, 160, 179, .06);
+	color: rgba(68, 160, 179, 1);
 	border: none;
 	border-radius: 3px;
 	padding: 15px 20px;
 	width: 100%;
 	outline: 0;
+	--color-primary: #44a0b3;
+	--color-grey: rgba(68, 160, 179, .06);
+	--color-dark: rgba(68, 160, 179, .5);
+	--color-semidark: rgba(68, 160, 179, .5);
 }
 
 #endDate{
@@ -177,7 +181,7 @@ body {
 	color: #fff;
 	padding: 15px;
 	border-radius: 3px;
-	background-color: var(--color-primary);
+	background-color: #44a0b3;
 	-webkit-box-shadow: 0 2px 7px var(--color-semidark);
 	        box-shadow: 0 2px 7px var(--color-semidark);
 	font-weight: 700;

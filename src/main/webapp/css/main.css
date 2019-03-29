@@ -146,8 +146,8 @@ body{
 .msg-form{
     height: 100%;
     position: fixed;
-    left: 14%;
-    padding-top: 120px;
+    left: 40%;
+    padding-top: 20px;
 }
 .btn-primary{
     width: 100px;
@@ -162,11 +162,13 @@ body{
 .loginOut {
     color: #FFFFFF;
     padding: 5px;
-    font-size: 4px;
+    font-size: 15px;
+    width: 90px;
+    height: 30px;
     border: none;
     border-radius: 4px;
-    margin-left: 30px;
-    background-color: #2aabd2;
+    margin-left: 60px;
+    background-color: rgba(51, 122, 183, 1);
 }
 
 
@@ -276,4 +278,31 @@ body{
     top: 49px;
     background-color: red;
     background-image: url("/images/welcome.jpg");
+}
+
+.send_msg-form{
+    height: 100%;
+    width: 40%;
+    position: fixed;
+    left: 12%;
+    margin-top: 49px;
+    padding-top: 120px;
+    background: #2aabd2;
+}
+
+.send_msg_input{
+    text-align:center;
+    width:300px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.getmap{
+    height: 100%;
+    width: 48%;
+    position: fixed;
+    left: 52%;
+    margin-top: 49px;
+    padding-top: 120px;
 }

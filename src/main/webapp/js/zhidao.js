@@ -63,3 +63,30 @@ function loginOut() {
     })
 }
 
+function findUserInfo() {
+    $.ajax({
+        type:"post",
+        url:"../user/get_user_info.do",
+        contentType:"application/json",
+        error:function () {
+            alert("查询失败")
+        },
+        success:function (date) {
+          alert(data.data);
+        }
+    })
+}
+
+function updateUserInfo() {
+    $.ajax({
+        type:"post",
+        url:"../user/upda.do",
+        contentType:"application/json",
+        error:function () {
+            alert("查询失败")
+        },
+        success:function (date) {
+            alert(data.data);
+        }
+    })
+}
