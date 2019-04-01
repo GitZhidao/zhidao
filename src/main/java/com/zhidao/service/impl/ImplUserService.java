@@ -5,7 +5,6 @@ import com.zhidao.common.ServerResponse;
 import com.zhidao.dao.UserMapper;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
-import com.zhidao.util.RandNumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,15 +51,16 @@ public class ImplUserService implements IUserService {
 
     //修改密码
     @Override
-    public ServerResponse<User> updateUser(User newuser ,String newpassword) {
-        User user=userMapper.selectByUsername(newuser.getUsername());
+    public ServerResponse<User> updateUser(User newUser, String newPassword) {
+        User user=userMapper.selectByUsername(newUser.getUsername());
         if (user==null){
             return  ServerResponse.createByErrorMessage("用户名不存在");
         }
-        else if(!user.getPassword().equals(newuser.getPassword())) {
+        else if(!user.getPassword().equals(newUser.getPassword())) {
             return ServerResponse.createByErrorMessage("原密码错误");
         }
-        if (userMapper.updateById(user,newpassword)==0){
+        int row=userMapper.updateById(user.getUserid(),newPassword);
+        if (row==0){
             return ServerResponse.createByError();//修改失败
         }
         return ServerResponse.createBySuccess("密码修改成功",user);

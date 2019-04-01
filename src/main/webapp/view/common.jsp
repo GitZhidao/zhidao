@@ -20,12 +20,21 @@
             <div class="menu_head_2"></div>
         </div>
         <div id="menu_middle">
-            <ul style="margin-left: 0px">
-                <li class="item"><a  href="${pageContext.request.contextPath}/view/userInform.jsp"  target="_self">个人信息</a></li>
-                <li class="item"><a href="${pageContext.request.contextPath}/view/addMsg.jsp" target="_parent">添加信息</a></li>
-                <li class="item"><a  href="${pageContext.request.contextPath}/msg/findAllMsg.do" target="_self">所有信息</a></li>
-                <li class="item"><a  href="${pageContext.request.contextPath}/oldMsg/allOldMsg.do" target="_self">历史信息</a> </li>
-                <li class="item"><a  href="${pageContext.request.contextPath}/msg/getLineChart.do" target="_self" class="left_list">回收站</a></li>
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="addMsg.jsp">发布信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:">活动</a></dd>
+                        <dd><a href="javascript:">签到</a></dd>
+                        <dd><a href="">提醒</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="userInform.jsp">我的信息</a>
+                </li>
+                <li class="layui-nav-item"><a href="">推荐</a></li>
+                <li class="layui-nav-item"><a href="userInform.jsp">个人信息</a></li>
             </ul>
             <div id="menu-separator">
                 <hr />

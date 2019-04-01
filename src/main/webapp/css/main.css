@@ -286,8 +286,7 @@ body{
     position: fixed;
     left: 12%;
     margin-top: 49px;
-    padding-top: 120px;
-    background: #2aabd2;
+    padding-top: 100px;
 }
 
 .send_msg_input{
@@ -298,8 +297,8 @@ body{
     padding: 8px;
 }
 
-.getmap{
-    height: 100%;
+.get_map{
+    height: 95%;
     width: 48%;
     position: fixed;
     left: 52%;

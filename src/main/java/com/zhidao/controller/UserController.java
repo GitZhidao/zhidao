@@ -36,25 +36,29 @@ public class UserController {
     }
 
     //用户注册时会转到该方法
-    @RequestMapping(value = "/regist",method = RequestMethod.POST)
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
     public @ResponseBody ServerResponse<String> regist(@RequestBody User user){
         return iUserService.regist(user);
     }
 
     //修改密码 传登陆时的user，修改密码输入时封装的newuser
-    @RequestMapping("/updateuser")
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse UpdateUser(@RequestBody User newuser,@RequestParam("newpassword") String newpassword,HttpSession session){
+    public ServerResponse UpdateUser(User newUser,String newPassword,HttpSession session){
         User user= (User) session.getAttribute("user");
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"用户需要登录");
         }
-        return iUserService.updateUser(newuser, newpassword);
+        ServerResponse serverResponse= iUserService.updateUser(newUser, newPassword);
+        if (serverResponse.isSuccess()){
+            session.removeAttribute("user");
+        }
+        return serverResponse;
     }
 
     @RequestMapping("/loginOut")
     @ResponseBody
-    public ServerResponse loginOut(@ModelAttribute User user, HttpSession session){
+    public ServerResponse loginOut( HttpSession session){
         session.removeAttribute("user");
         return ServerResponse.createBySuccess();
     }

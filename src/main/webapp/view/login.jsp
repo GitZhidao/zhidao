@@ -1,4 +1,4 @@
-<%@ page import="com.zhidao.common.ServerResponse" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/11/4
@@ -10,7 +10,8 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
-    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/lay/modules/layer.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>

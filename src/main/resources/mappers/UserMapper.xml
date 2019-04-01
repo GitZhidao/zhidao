@@ -81,14 +81,14 @@
       email = #{email,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
-  <select id="selectByUsername" resultType="com.zhidao.pojo.User" parameterType="string">
+  <select id="selectByUsername" resultType="com.zhidao.pojo.User" parameterType="java.lang.String">
     select
     <include refid="Base_Column_List"/>
     from z_user where username=#{username};
   </select>
-  <update id="updateById" parameterType="com.zhidao.pojo.User">
+  <update id="updateById" parameterType="map">
     update z_user
-      set password=#{newpassword}
-      where userId=#{userId,jdbcType=INTEGER}
+    set password=#{newPassword}
+    where userid=#{userid}
   </update>
 </mapper>

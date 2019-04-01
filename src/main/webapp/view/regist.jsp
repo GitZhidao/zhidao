@@ -11,7 +11,7 @@
     <title>账户注册</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/auth.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.ui.css"/>
-    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@
                         <label>email</label>
                         <label for="email"></label><input type="password" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
-                    <button class="lowin-btn" id="login_btn" type="button" onclick="regist()">
+                    <button class="lowin-btn" id="login_btn" type="button" onclick="register()">
                         Sign Up
                     </button>
                     <div class="text-foot">
