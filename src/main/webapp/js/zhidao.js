@@ -1,56 +1,91 @@
-function register(){
-    var user={
-    "username":$("#username").val(),
-    "password":$("#password").val(),
-    "email":$("#email").val()
-    };
-    $.ajax({
-        url:"../user/register.do",
-        type:"POST",
-        data:JSON.stringify(user),
-        contentType:"application/json",
-        async: true,
-        error:function(){
-            layer.alert("注册失败")
-        },
-        success:function (data) {
-            if (data.status===0){
-                layer.alert("注册成功");
-                window.location.href="/view/login.jsp"
-            }
-            else
-            {
-                layer.alert(data.msg);
-            }
-        }
+window.onload=function (ev) {
+    layui.use('element',function () {
+        var element = layui.element;
+        var isShow = true;
     });
-}
-
-function login(){
-    var index=layer.load();
-    var user={
-        "username":$("#username").val(),
-        "password":$("#password").val()
-    };
-    $.ajax({
-        url:"../user/login.do",
-        type:"POST",
-        data:JSON.stringify(user),
-        contentType:"application/json",
-        async: true,
-        error:function(){
-            layer.msg("登录失败")
-        },
-        success:(function (data) {
-            layer.close(index);
-            if (data.status===0){
-                window.location.href='/view/main.jsp';
-            }
-            else {
-                layer.msg(data.msg);
+    $('.kit-side-fold').click(function() {
+        //选择出所有的span，并判断是不是hidden
+        $('.layui-nav-item span').each(function () {
+            if ($(this).is(':hidden')) {
+                $(this).show();
+            } else {
+                $(this).hide();
             }
         })
     });
+    if(isShow){
+        $('dd span').each(function(){
+            $(this).hide();
+        });
+        //修改标志位
+        isShow =false;
+    }else{
+        $('dd span').each(function(){
+            $(this).show();
+        });
+        isShow =true;
+    }
+};
+
+function register(){
+    layui.use('layer',function () {
+        var user={
+            "username":$("#username").val(),
+            "password":$("#password").val(),
+            "email":$("#email").val()
+        };
+        $.ajax({
+            url:"../user/register.do",
+            type:"POST",
+            data:JSON.stringify(user),
+            contentType:"application/json",
+            async: true,
+            error:function(){
+                layer.alert("注册失败")
+            },
+            success:function (data) {
+                if (data.status===0){
+                    layer.alert("注册成功");
+                    window.location.href="/view/login.jsp"
+                }
+                else
+                {
+                    layer.alert(data.msg);
+                }
+            }
+        });
+    })
+}
+
+function login(){
+    layui.use('layer',function () {
+        var layer=layui.layer;
+        var index=layer.load(0);
+        var user={
+            "username":$("#username").val(),
+            "password":$("#password").val()
+        };
+        $.ajax({
+            url:"../user/login.do",
+            type:"POST",
+            data:JSON.stringify(user),
+            contentType:"application/json",
+            async: true,
+            error:function(){
+                layer.close(index);
+                layer.msg("登录失败")
+            },
+            success:(function (data) {
+                layer.close(index);
+                if (data.status===0){
+                    window.location.href='/view/main.jsp';
+                }
+                else {
+                    layer.alert(data.msg, {icon: 6});
+                }
+            })
+        });
+    })
 }
 
 function loginOut() {
@@ -81,12 +116,12 @@ function updateUserInfo() {
             layer.alert("修改失败");
         },
         success:function (date) {
-            if(date.status==2){
+            if(date.status===2){
                 layer.alert("用户需要登录");
                 window.location.href="/view/login.jsp";
 
             }
-            if (date.status==0)
+            if (date.status===0)
             {
                 window.location.href="/view/login.jsp"
                 layer.alert("修改成功");
@@ -168,3 +203,16 @@ function getLocation() {
     };
 }
 
+function addMsg() {
+    var msg={
+        "title":$("#title").val(),
+        "content":$("#content").val(),
+        "location":$("#location").val(),
+        "endtime":$("#endtime").val()
+    };
+    $.ajax({
+        url:"/msg/sendMsg.do",
+        method:"POST",
+        
+    })
+}

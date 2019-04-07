@@ -37,7 +37,7 @@
 <body>
 <jsp:include page="common.jsp"/>
 <div class="send_msg-form">
-    <form class="layui-form" action="">
+    <form class="layui-form">
         <div class="layui-form-item">
             <label class="layui-form-label">输入框</label>
             <div class="layui-input-block">
@@ -62,7 +62,7 @@
             <label class="layui-form-label">结束时间</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline" style="left:27%">
-                    <input type="text"  class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                    <input type="text" id="endtime" name="endtime" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
                 </div>
             </div>
         </div>
@@ -75,18 +75,18 @@
         <div class="layui-form-item">
             <label class="layui-form-label">地址</label>
             <div class="layui-input-block">
-                <input type="text" name="location" id="address" required  lay-verify="required" placeholder="输入位置" autocomplete="off" class="layui-input">
+                <input type="text" name="address" id="address" required  lay-verify="required" placeholder="输入位置" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
-                <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea name="content"  placeholder="请输入内容" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn"  lay-filter="formDemo">提交</button>
+                <button class="layui-btn"  lay-filter="formDemo" type="button">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -105,24 +105,26 @@
             var x=data.elem.checked;
             if (x===true){
                 document.getElementById("get_map").style.display="inline";
+                document.getElementById("address").style.background="white";
+                $("#address").attr("readOnly",false);
                 getLocation();
             }
             else{
+                document.getElementById("address").style.background="#f2f2f2";
+                $("#address").attr("readOnly","true");
+                document.getElementById("address").value=null;
                 document.getElementById("get_map").style.display="none";
             }
         });
         //
-        laydate.render({
-            elem: '#test5'
-            ,type: 'datetime'
-        });
     });
     layui.use('laydate',function () {
         var laydate=layui.laydate;
         laydate.render({
-            elem: '#test5'
-            ,type: 'datetime'
-
+            elem: '#endtime',
+            type: 'datetime',
+            theme: '#204d74',
+            min:0
         });
     })
 </script>

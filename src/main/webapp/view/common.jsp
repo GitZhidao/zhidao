@@ -20,13 +20,13 @@
             <div class="menu_head_2"></div>
         </div>
         <div id="menu_middle">
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a href="addMsg.jsp">发布信息</a>
+                <li class="layui-nav-item ">
+                    <a href="javaScript:"><span>发布信息</span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:">活动</a></dd>
-                        <dd><a href="javascript:">签到</a></dd>
+                        <dd><a href="addMsg.jsp"><span>活动</span></a></dd>
+                        <dd><a href="javascript:"><span>签到</span></a></dd>
                         <dd><a href="">提醒</a></dd>
                     </dl>
                 </li>
@@ -45,5 +45,4 @@
                 <button id="loginOut" class="loginOut" type="button" onclick="loginOut()">退出登录</button>
             </div>
     </div >
-
 </div>
