@@ -16,6 +16,5 @@ public class DateTest {
         System.out.println(date);
         Date date1=new java.sql.Timestamp(date.getTime());
         System.out.println(date1);
-        String dateString= DateTimeUtils.dateToStr(date1);
 }
 }

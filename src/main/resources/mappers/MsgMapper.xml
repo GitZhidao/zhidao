@@ -58,8 +58,8 @@
     insert into z_msg (msgid, title, endtime, 
       code, location, filepath, 
       userid, content)
-    values (#{msgid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{endtime,jdbcType=TIMESTAMP}, 
-      #{code,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+    values (#{msgid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{endtime,jdbcType=TIMESTAMP},#{creattime,jdbcType=TIMESTAMP}
+      #{code,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR},
       #{userid,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zhidao.pojo.Msg" >
@@ -73,6 +73,9 @@
       </if>
       <if test="endtime != null" >
         endtime,
+      </if>
+      <if test="creattime!=null">
+        creattime,
       </if>
       <if test="code != null" >
         code,
@@ -99,6 +102,9 @@
       </if>
       <if test="endtime != null" >
         #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime!=null">
+        #{creattime,jdbcType=TIMESTAMP},
       </if>
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},

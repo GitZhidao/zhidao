@@ -3,28 +3,8 @@ window.onload=function (ev) {
         var element = layui.element;
         var isShow = true;
     });
-    $('.kit-side-fold').click(function() {
-        //选择出所有的span，并判断是不是hidden
-        $('.layui-nav-item span').each(function () {
-            if ($(this).is(':hidden')) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        })
-    });
-    if(isShow){
-        $('dd span').each(function(){
-            $(this).hide();
-        });
-        //修改标志位
-        isShow =false;
-    }else{
-        $('dd span').each(function(){
-            $(this).show();
-        });
-        isShow =true;
-    }
+    document.getElementById("address").style.background="#f2f2f2";
+    $("#address").attr("readOnly","true");
 };
 
 function register(){
@@ -117,13 +97,13 @@ function updateUserInfo() {
         },
         success:function (date) {
             if(date.status===2){
-                layer.alert("用户需要登录");
+                layer.alert(date.msg);
                 window.location.href="/view/login.jsp";
 
             }
             if (date.status===0)
             {
-                window.location.href="/view/login.jsp"
+                window.location.href="/view/login.jsp";
                 layer.alert("修改成功");
             }
             else {
@@ -189,6 +169,7 @@ function getLocation() {
         });
     }
 
+
     map.on('click',function(e){
         document.getElementById('location').value = e.lnglat;
         regeoCode();
@@ -201,18 +182,41 @@ function getLocation() {
         }
         return true;
     };
+    window.onload=regeoCode();
 }
 
 function addMsg() {
-    var msg={
-        "title":$("#title").val(),
-        "content":$("#content").val(),
-        "location":$("#location").val(),
-        "endtime":$("#endtime").val()
-    };
-    $.ajax({
-        url:"/msg/sendMsg.do",
-        method:"POST",
-        
+    layui.use('layer',function () {
+        var layer=layui.layer;
+        var msg={
+            "title":$("#title").val(),
+            "content":$("#content").val(),
+            "location":$("#location").val(),
+            "endtime":$("#endtime").val()
+        };
+        $.ajax({
+            url:"../msg/sendMsg.do",
+            type:"POST",
+            data:JSON.stringify(msg),
+            contentType:"application/json",
+            async: true,
+            error:function () {
+                layer.alert("error");
+            },
+            success:function (data) {
+                if(data.status===2){
+                    layer.msg(data.msg);
+                    window.location.href="/view/login.jsp";
+                }
+                if(data.status===0){
+                    layer.msg(data.msg+data.data.code);
+                    document.getElementById("add_msg").reset();
+                }
+                else {
+                    layer.msg(data.msg);
+                }
+            }
+        });
     })
+
 }

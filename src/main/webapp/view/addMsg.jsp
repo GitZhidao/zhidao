@@ -37,7 +37,7 @@
 <body>
 <jsp:include page="common.jsp"/>
 <div class="send_msg-form">
-    <form class="layui-form">
+    <form class="layui-form" id="add_msg">
         <div class="layui-form-item">
             <label class="layui-form-label">输入框</label>
             <div class="layui-input-block">
@@ -62,31 +62,31 @@
             <label class="layui-form-label">结束时间</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline" style="left:27%">
-                    <input type="text" id="endtime" name="endtime" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                    <input type="text" id="endtime" name="endtime" class="layui-input"  placeholder="yyyy-MM-dd HH:mm:ss">
                 </div>
             </div>
         </div>
         <div class="layui-form-item" style="display: none">
             <label class="layui-form-label">位置</label>
             <div class="layui-input-block">
-                <input type="text" name="location" id="location" required  lay-verify="required" placeholder="输入位置" autocomplete="off" class="layui-input">
+                <input type="text" name="location" id="location" placeholder="输入位置" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">地址</label>
             <div class="layui-input-block">
-                <input type="text" name="address" id="address" required  lay-verify="required" placeholder="输入位置" autocomplete="off" class="layui-input">
+                <input type="text" name="address" id="address" placeholder="输入位置" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
-                <textarea name="content"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea name="content" id="content"  placeholder="请输入内容" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn"  lay-filter="formDemo" type="button">提交</button>
+                <button class="layui-btn"  lay-filter="formDemo" type="button" onclick="addMsg()" >提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -98,6 +98,9 @@
 </div>
 <script>
     //Demo
+    function mindate(){
+       return new Date();
+    }
     layui.use('form', function(){
         var form = layui.form;
         //监听开关
@@ -106,8 +109,10 @@
             if (x===true){
                 document.getElementById("get_map").style.display="inline";
                 document.getElementById("address").style.background="white";
+                document.getElementById("address").value='默认为当前所在位置';
                 $("#address").attr("readOnly",false);
                 getLocation();
+
             }
             else{
                 document.getElementById("address").style.background="#f2f2f2";
@@ -124,7 +129,8 @@
             elem: '#endtime',
             type: 'datetime',
             theme: '#204d74',
-            min:0
+            min:'mindate()',
+            value:new Date()
         });
     })
 </script>

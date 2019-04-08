@@ -29,12 +29,11 @@ public class ImplMsgService implements IMsgService {
     @ResponseBody
     public ServerResponse<Msg> addMsg(@RequestBody Msg msg) {
         msg.setCode(RandNumberUtils.randNumber());
-        msg.setCreatTime(DateTimeUtils.dateToDate(new Date()));
         int row=msgMapper.insertSelective(msg);
         if (row==0){
-            return ServerResponse.createByError();
+            return ServerResponse.createByErrorMessage("发布失败");
         }
-        return ServerResponse.createBySuccessMessage("发布成功");
+        return ServerResponse.createBySuccess("发布成功,你的信息码是：",msg);
     }
 
     @Override

@@ -38,33 +38,24 @@ body{
 }
 
 .menu_head{
-    width: 100px;
+    width: 100%;
     height:100px;
     position: relative;
     color: white;
-
 }
 
 .menu_head_1{
-    width: 100px;
+    padding-top: 25%;
+    width: 100%;
+    height: 50%;
     font-size: 12px;
-    padding-top: 30px;
-    margin-left: 40px;
-
+    position: absolute;
 }
-
-.menu_head_2{
-   margin-top: 5px;
-    font-size: 20px;
-}
-
 
 #menu_middle{
     width: 100%;
     height: 400px;
 }
-
-
 
 .item{
     list-style: none;
@@ -86,38 +77,30 @@ body{
 }
 
 #menu-separator{
-    width: 110px;
+    width: 60%;
     margin-top: 30px;
-    padding-left: 20px;
-
-
+    padding-left: 20%;
 }
 
 #menu-separator hr{
-    width: 130px;
+    width: 100%;
     background-color: #8c8c8c;
     border: none;
     height: 1px;
-
-
 }
 
-
 #menu-foot{
-    width: 170px;
+    width: 100%;
     height:157px;
-    margin-left: -23px;
-    position: relative;
+    position: absolute;
 }
 
 #login_btn{
-    width: 100px;
+    width: 100%;
     height: 20px;
-    margin-left: 35px;
     border-radius: 4px;
     background-color: #2aabd2;
     border:none;
-
 }
 
 #main{
@@ -130,18 +113,6 @@ body{
 
 
  }
-#frame_1{
-    position: absolute;
-    left: 0px;
-    height:100%;
-    width: 40%;
-}
-#frame_2{
-    position: absolute;
-    left: 40%;
-    height:100%;
-    width: 60%;
-}
 
 .msg-form{
     height: 100%;
@@ -161,13 +132,11 @@ body{
 
 .loginOut {
     color: #FFFFFF;
-    padding: 5px;
-    font-size: 15px;
-    width: 90px;
+    font-size: 14px;
+    width: 60%;
     height: 30px;
     border: none;
     border-radius: 4px;
-    margin-left: 60px;
     background-color: rgba(51, 122, 183, 1);
 }
 

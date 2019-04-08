@@ -16,8 +16,9 @@
     </div>
     <div class="menu">
         <div class="menu_head">
-            <div class="menu_head_1">用户:${user.username}</div>
-            <div class="menu_head_2"></div>
+            <div class="menu_head_1">
+                <label>用户:${user.username}</label>
+            </div>
         </div>
         <div id="menu_middle">
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
@@ -33,7 +34,7 @@
                 <li class="layui-nav-item">
                     <a href="userInform.jsp">我的信息</a>
                 </li>
-                <li class="layui-nav-item"><a href="">推荐</a></li>
+                <li class="layui-nav-item"><a>关注信息</a></li>
                 <li class="layui-nav-item"><a href="userInform.jsp">个人信息</a></li>
             </ul>
             <div id="menu-separator">

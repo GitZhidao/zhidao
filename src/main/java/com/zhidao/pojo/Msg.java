@@ -1,5 +1,6 @@
 package com.zhidao.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ public class Msg {
     private String title;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endtime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -111,5 +113,11 @@ public class Msg {
 
     public void setCreatTime(Date creatTime) {
         this.creattime = creatTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Msg[msgId="+msgid+",title="+title+",content="+content+",creaTime="+creattime+",endtime="+endtime+",userid="+userid+",code="+code
+                +",location="+location+",filepath"+filepath+"]";
     }
 }

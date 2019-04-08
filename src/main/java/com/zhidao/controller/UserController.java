@@ -4,10 +4,16 @@ import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author:
@@ -18,7 +24,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 //管理session中的属性
-public class UserController {
+public class UserController{
     @Autowired
     IUserService iUserService;
     //登陆方法
