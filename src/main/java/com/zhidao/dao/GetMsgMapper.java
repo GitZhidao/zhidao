@@ -1,6 +1,7 @@
 package com.zhidao.dao;
 
 import com.zhidao.pojo.GetMsg;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author:
@@ -21,5 +22,6 @@ public interface GetMsgMapper {
 
     int updateByPrimaryKey(GetMsg record);
 
-    GetMsg selectByMsgId(int msgId);
+    //查询是否用户已经关注
+    GetMsg selectMsgByUserIdandMsgId(@Param("msgid") int msgid, @Param("userid") int userId);
 }

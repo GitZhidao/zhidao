@@ -13,6 +13,6 @@ public class RandNumberUtils {
         //SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SS"); //时间格式 2019-03-27 12:05:45.161
         String  formDate =sdf.format(date);
         String no = formDate.substring(12);//取末尾五位
-        return "DX"+no;//返回DX开头的编号
+        return "zd"+no;//返回DX开头的编号
     }
 }

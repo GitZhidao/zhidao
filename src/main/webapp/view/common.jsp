@@ -32,13 +32,17 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="userInform.jsp">我的信息</a>
+                    <a >我的信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="findAllMsg.jsp"><span>发布的信息</span></a></dd>
+                        <dd><a href="javascript:"><span>关注的信息</span></a></dd>
+                    </dl>
                 </li>
-                <li class="layui-nav-item"><a>关注信息</a></li>
+                <li class="layui-nav-item"><a onclick="focusMsg()">关注信息</a></li>
                 <li class="layui-nav-item"><a href="userInform.jsp">个人信息</a></li>
             </ul>
             <div id="menu-separator">
-                <hr />
+                <hr/>
             </div>
         </div>
 

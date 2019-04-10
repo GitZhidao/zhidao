@@ -27,23 +27,23 @@ public class ImplGetMsgService implements IGetMsgService {
     @Autowired
     GetMsgMapper getMsgMapper;
 
-    @RequestMapping(value = "/focusMsg",method = RequestMethod.POST)
-    @ResponseBody
-    public ServerResponse<String> focusMsg(@RequestBody GetMsg getMsg, String code){
+    public ServerResponse<String> focusMsg(int userid,String code){
         Msg msg=msgMapper.selectMsgByCode(code);
         if (msg==null){
             return ServerResponse.createByErrorMessage("该消息不存在");
         }
-        GetMsg getMsg1=getMsgMapper.selectByMsgId(msg.getMsgid());
-        if (getMsg1!=null){
-            return ServerResponse.createByErrorMessage("已关注该消息");
+        GetMsg getMsg=getMsgMapper.selectMsgByUserIdandMsgId(msg.getMsgid(),userid);
+        if (getMsg!=null){
+            return ServerResponse.createByErrorMessage("不能重复关注");
         }
+        getMsg=new GetMsg();
         getMsg.setMsgid(msg.getMsgid());
-        int row=getMsgMapper.insert(getMsg);
+        getMsg.setUserid(userid);
+        int row=getMsgMapper.insertSelective(getMsg);
+        System.out.println(getMsg.getId());
         if (row!=0){
             return ServerResponse.createBySuccessMessage("关注成功");
         }
         return ServerResponse.createByErrorMessage("关注失败");
    }
-
 }

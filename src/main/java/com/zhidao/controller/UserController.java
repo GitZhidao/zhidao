@@ -76,7 +76,6 @@ public class UserController{
         if (user!=null){
             System.out.println(user.getPassword());
             return ServerResponse.createBySuccess(user);
-
         }
         return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
     }

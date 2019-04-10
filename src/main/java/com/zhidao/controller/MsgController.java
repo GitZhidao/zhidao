@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.SimpleFormatter;
 
 /**
@@ -40,14 +41,16 @@ public class MsgController{
         System.out.println(msg.getCreatTime());
         return iMsgService.addMsg(msg);
     }
-
     //查找所以已发送信息
-    @RequestMapping(value = "/findAllMsg")
-    public ServerResponse findAllMsg(int userid, HttpSession session){
-        User user= (User) session.getAttribute("user");
+    @RequestMapping(value = "/allSendMsg")
+    @ResponseBody
+    public ServerResponse<List<Msg>> findAllSendMsg(HttpSession session){
+        User user= (User)session.getAttribute("user");
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        return iMsgService.findAllMsg(user.getUserid());
+        ServerResponse serverResponse=iMsgService.findAllMsg(user.getUserid());
+        session.setAttribute("msgs",serverResponse.getData());
+        return serverResponse;
     }
 }

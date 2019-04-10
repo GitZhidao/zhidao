@@ -3,8 +3,6 @@ window.onload=function (ev) {
         var element = layui.element;
         var isShow = true;
     });
-    document.getElementById("address").style.background="#f2f2f2";
-    $("#address").attr("readOnly","true");
 };
 
 function register(){
@@ -26,7 +24,7 @@ function register(){
             success:function (data) {
                 if (data.status===0){
                     layer.alert("注册成功");
-                    window.location.href="/view/login.jsp"
+                    window.location.href="/view/login.jsp";
                 }
                 else
                 {
@@ -40,31 +38,34 @@ function register(){
 function login(){
     layui.use('layer',function () {
         var layer=layui.layer;
-        var index=layer.load(0);
-        var user={
-            "username":$("#username").val(),
-            "password":$("#password").val()
-        };
-        $.ajax({
-            url:"../user/login.do",
-            type:"POST",
-            data:JSON.stringify(user),
-            contentType:"application/json",
-            async: true,
-            error:function(){
-                layer.close(index);
-                layer.msg("登录失败")
-            },
-            success:(function (data) {
-                layer.close(index);
-                if (data.status===0){
-                    window.location.href='/view/main.jsp';
-                }
-                else {
-                    layer.alert(data.msg, {icon: 6});
-                }
-            })
+        layer.ready(function(){
+            var index=layer.load(0);
+            var user={
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            };
+            $.ajax({
+                url:"../user/login.do",
+                type:"POST",
+                data:JSON.stringify(user),
+                contentType:"application/json",
+                async: true,
+                error:function(){
+                    layer.close(index);
+                    layer.msg("登录失败")
+                },
+                success:(function (data) {
+                    layer.close(index);
+                    if (data.status===0){
+                        window.location.href='/view/main.jsp';
+                    }
+                    else {
+                        layer.alert(data.msg, {icon: 6});
+                    }
+                })
+            });
         });
+
     })
 }
 
@@ -209,7 +210,7 @@ function addMsg() {
                     window.location.href="/view/login.jsp";
                 }
                 if(data.status===0){
-                    layer.msg(data.msg+data.data.code);
+                    layer.alert(data.msg+data.data.code);
                     document.getElementById("add_msg").reset();
                 }
                 else {
@@ -219,4 +220,53 @@ function addMsg() {
         });
     })
 
+}
+
+function focusMsg() {
+    layui.use('layer',function () {
+        var layer=layui.layer;
+
+        layer.prompt({
+            title: '关注信息',
+            placeholder:'输入信息id',
+            offset:['40%', '42%']
+        }, function(val, index){
+            var category=$("#categoryname").val();
+            $.ajax({
+                url:"../getMsg/focusMsg.do",
+                type:"POST",
+                data:{"msgCode":val},
+                error:function () {
+                    layer.msg("error");
+                },
+                success:function (data) {
+                    layer.msg(data.msg);
+                    if (data.status===2){
+                        window.location.href="/view/login.jsp";
+                    }
+                    if (data.status===0) {
+                        layer.close(index);
+                    }
+                }
+            });
+        });
+        $(".layui-layer-content").append("<br/><input type=\"text\" name=\"categoryname\" id= \"categoryname\" class=\"layui-input\" placeholder=\"类别\"/>");
+    });
+}
+
+function allSendMsg() {
+    layui.use('element',function () {
+        var element = layui.element;
+        var isShow = true;
+    });
+    $.ajax({
+        url:"../msg/allSendMsg.do",
+        type:"POST",
+        error:function () {
+            alert("error");
+        },
+        success:function (data) {
+            alert(data);
+        }
+    })
 }

@@ -75,7 +75,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">地址</label>
             <div class="layui-input-block">
-                <input type="text" name="address" id="address" placeholder="输入位置" autocomplete="off" class="layui-input">
+                <input type="text" name="address" style="background: #f2f2f2"  readonly="readonly" id="address" placeholder="输入位置" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
@@ -98,9 +98,6 @@
 </div>
 <script>
     //Demo
-    function mindate(){
-       return new Date();
-    }
     layui.use('form', function(){
         var form = layui.form;
         //监听开关
@@ -129,7 +126,7 @@
             elem: '#endtime',
             type: 'datetime',
             theme: '#204d74',
-            min:'mindate()',
+            min:'new Date()',
             value:new Date()
         });
     })

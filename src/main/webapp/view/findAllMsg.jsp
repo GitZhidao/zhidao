@@ -10,16 +10,18 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/auth.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <script src="/layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <script src="${pageContext.request.contextPath}/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
+    <script src="${pageContext.request.contextPath}/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
-<body>
+<body onload="allSendMsg()">
 <jsp:include page="/view/common.jsp"/>
 <div class="msg_list">
     <c:forEach var="msg" items="${msgs}">
-        <a href="/msg/getMsg.do?msgId=${msg.msgId}" target="msgFrame">
+        <%--<a href="${pageContext.request.contextPath}/msg/getMsg.do?msgId=${msg.msgId}" target="msgFrame">--%>
             <div class="msg">
                 <div class="msg_title">
                     <label style="color: #5e5e5e">标题:</label>
@@ -33,15 +35,12 @@
                     <label>结束时间</label>
                     <label>${msg.endtime}</label>
                 </div>
-                <div class="delete_msg">
-                    <a href="/msg/deleteMsg.do?msgId=${msg.msgId}">删除</a>
-                </div>
+                <%--<div class="delete_msg">--%>
+                    <%--<a href="${pageContext.request.contextPath}/msg/deleteMsg.do?msgId=${msg.msgId}">删除</a>--%>
+                <%--</div>;--%>
             </div>
-        </a>
+        <%--</a>--%>
     </c:forEach>
-</div>
-<div class="msg_leirong">
-    <iframe name="msgFrame" class="msgFrame" frameborder="none" src="/view/welcome.jsp"/>
 </div>
 </body>
 </html>
