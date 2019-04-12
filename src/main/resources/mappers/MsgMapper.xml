@@ -43,6 +43,8 @@
   <select id="selectAllMsgByUserId" resultType="com.zhidao.pojo.Msg" parameterType="integer">
       select
       <include refid="Base_Column_List"/>
+      ,
+      <include refid="Blob_Column_List"/>
       from z_msg where userid=#{userid}
   </select>
   <select id="selectMsgByCode" resultType="com.zhidao.pojo.Msg" parameterType="string">

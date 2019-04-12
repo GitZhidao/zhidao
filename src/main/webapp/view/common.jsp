@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div id="content">
+<div id="content1">
     <div class="head">
         <div class="con">
             <img src="/images/newicon.jpg" width="100%" height="100%">

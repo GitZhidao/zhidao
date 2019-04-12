@@ -55,4 +55,12 @@ public class DateTimeUtils {
         }
         return msgList;
     }
+
+    public static List<Msg> ConvertDate(List<Msg> msgs){
+        for (int i=0;i<msgs.size()-1;i++){
+            msgs.get(i).setEndtime(dateToDate(msgs.get(i).getEndtime()));
+            return msgs;
+        }
+        return msgs;
+    }
 }

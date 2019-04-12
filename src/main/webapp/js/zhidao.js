@@ -1,9 +1,9 @@
-window.onload=function (ev) {
-    layui.use('element',function () {
-        var element = layui.element;
-        var isShow = true;
-    });
-};
+layui.use('element',function () {
+    var element = layui.element;
+    var isShow = true;
+});
+
+
 
 function register(){
     layui.use('layer',function () {
@@ -52,7 +52,7 @@ function login(){
                 async: true,
                 error:function(){
                     layer.close(index);
-                    layer.msg("登录失败")
+                    layer.msg("登录失败");
                 },
                 success:(function (data) {
                     layer.close(index);
@@ -191,9 +191,9 @@ function addMsg() {
         var layer=layui.layer;
         var msg={
             "title":$("#title").val(),
-            "content":$("#content").val(),
             "location":$("#location").val(),
-            "endtime":$("#endtime").val()
+            "endtime":$("#endtime").val(),
+            "content":$("#content").val()
         };
         $.ajax({
             url:"../msg/sendMsg.do",
@@ -225,7 +225,6 @@ function addMsg() {
 function focusMsg() {
     layui.use('layer',function () {
         var layer=layui.layer;
-
         layer.prompt({
             title: '关注信息',
             placeholder:'输入信息id',
@@ -255,18 +254,14 @@ function focusMsg() {
 }
 
 function allSendMsg() {
-    layui.use('element',function () {
-        var element = layui.element;
-        var isShow = true;
-    });
     $.ajax({
         url:"../msg/allSendMsg.do",
         type:"POST",
+        async: false,
         error:function () {
             alert("error");
         },
         success:function (data) {
-            alert(data);
         }
     })
 }

@@ -6,7 +6,7 @@ import com.zhidao.pojo.Msg;
 import java.util.List;
 
 public interface IMsgService {
-    public ServerResponse<Msg> addMsg(Msg msg);
+     ServerResponse<Msg> addMsg(Msg msg);
 
-    public ServerResponse<List<Msg>> findAllMsg(int userid);
+     ServerResponse<List<Msg>> findAllMsg(int userid);
 }

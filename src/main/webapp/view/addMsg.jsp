@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>添加信息</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/auth.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.ui.css"/>
@@ -39,7 +39,7 @@
 <div class="send_msg-form">
     <form class="layui-form" id="add_msg">
         <div class="layui-form-item">
-            <label class="layui-form-label">输入框</label>
+            <label class="layui-form-label" >输入框</label>
             <div class="layui-input-block">
                 <input type="text" id="title" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
             </div>
@@ -109,7 +109,6 @@
                 document.getElementById("address").value='默认为当前所在位置';
                 $("#address").attr("readOnly",false);
                 getLocation();
-
             }
             else{
                 document.getElementById("address").style.background="#f2f2f2";
@@ -118,7 +117,6 @@
                 document.getElementById("get_map").style.display="none";
             }
         });
-        //
     });
     layui.use('laydate',function () {
         var laydate=layui.laydate;
