@@ -26,6 +26,11 @@
         from z_getmsg
         where msgid=#{msgid} and userid=#{userid}
     </select>
+    <select id="selectByUsid" resultType="java.lang.Integer">
+        select
+        msgid
+        from z_getmsg where userid=#{userid}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from z_getmsg
     where id = #{id,jdbcType=VARCHAR}

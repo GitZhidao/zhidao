@@ -12,12 +12,21 @@
         <div class="con">
             <img src="/images/newicon.jpg" width="100%" height="100%">
         </div>
-        <h1 style="margin-left: 90px">Code is everything</h1>
+        <h1 style="margin-left: 90px" id="common-title">Code is everything</h1>
     </div>
     <div class="menu">
         <div class="menu_head">
             <div class="menu_head_1">
-                <label>用户:${user.username}</label>
+                <ul class="layui-nav">
+                    <li class="layui-nav-item">
+                        <img src="${pageContext.request.contextPath}//t.cn/RCzsdCq" class="layui-nav-img">${user.username}
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">修改信息</a></dd>
+                            <dd><a href="javascript:;">安全管理</a></dd>
+                            <dd><a href="javascript:;">退了</a></dd>
+                        </dl>
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="menu_middle">
@@ -34,8 +43,8 @@
                 <li class="layui-nav-item">
                     <a >我的信息</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="findAllMsg.jsp"><span>发布的信息</span></a></dd>
-                        <dd><a href="javascript:"><span>关注的信息</span></a></dd>
+                        <dd><a href="findAllMsg.jsp" onclick="allSendMsg()"><span>发布的信息</span></a></dd>
+                        <dd><a href="allFocusMsg.jsp"><span>关注的信息</span></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a onclick="focusMsg()">关注信息</a></li>

@@ -38,11 +38,14 @@ public class GetMsgController {
     }
 
 
+    @RequestMapping("/allFocusMsg")
+    @ResponseBody
     public ServerResponse<List<Msg>> allFocusMsg(HttpSession session){
         User user= (User) session.getAttribute("user");
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        return null;
+        return iGetMsgService.getAllFocusMsg(user.getUserid());
     }
+
 }

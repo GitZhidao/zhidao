@@ -3,8 +3,6 @@ layui.use('element',function () {
     var isShow = true;
 });
 
-
-
 function register(){
     layui.use('layer',function () {
         var user={
@@ -24,7 +22,7 @@ function register(){
             success:function (data) {
                 if (data.status===0){
                     layer.alert("注册成功");
-                    window.location.href="/view/login.jsp";
+                    window.location.href="../login.jsp";
                 }
                 else
                 {
@@ -78,7 +76,7 @@ function loginOut() {
             alert("失败");
         },
         success:function (data) {
-          window.location.href="/view/login.jsp";
+          window.location.href="../login.jsp";
         }
     })
 }
@@ -99,12 +97,12 @@ function updateUserInfo() {
         success:function (date) {
             if(date.status===2){
                 layer.alert(date.msg);
-                window.location.href="/view/login.jsp";
+                window.location.href="../login.jsp";
 
             }
             if (date.status===0)
             {
-                window.location.href="/view/login.jsp";
+                window.location.href="../login.jsp";
                 layer.alert("修改成功");
             }
             else {
@@ -207,7 +205,7 @@ function addMsg() {
             success:function (data) {
                 if(data.status===2){
                     layer.msg(data.msg);
-                    window.location.href="/view/login.jsp";
+                    window.location.href="../login.jsp";
                 }
                 if(data.status===0){
                     layer.alert(data.msg+data.data.code);
@@ -241,7 +239,7 @@ function focusMsg() {
                 success:function (data) {
                     layer.msg(data.msg);
                     if (data.status===2){
-                        window.location.href="/view/login.jsp";
+                        window.location.href="../login.jsp";
                     }
                     if (data.status===0) {
                         layer.close(index);
@@ -263,5 +261,14 @@ function allSendMsg() {
         },
         success:function (data) {
         }
+    })
+}
+
+function allFocusMsg() {
+        $.ajax({
+            url:"../getMsg/allFocusMsg.do",
+            type:post,
+            async:false,
+            error:f
     })
 }

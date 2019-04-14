@@ -40,14 +40,8 @@ public class ImplMsgService implements IMsgService {
     public ServerResponse<List<Msg>> findAllMsg(int userid) {
         List<Msg> msgs=msgMapper.selectAllMsgByUserId(userid);
         if (msgs!=null){
-            for (int i=0;i<msgs.size();i++){
-                Date date=DateTimeUtils.dateToDate(msgs.get(i).getEndtime());
-                System.out.println(date);
-                msgs.get(i).setEndtime(date);
-            }
             return ServerResponse.createBySuccess(msgs);
-
         }
-        return ServerResponse.createByErrorMessage("请先关注信息");
+        return ServerResponse.createByErrorMessage("请先发布信息");
     }
 }

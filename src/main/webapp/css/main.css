@@ -1,17 +1,6 @@
-/*@media screen and (max-width: 960px){*/
-    /*.menu{*/
-        /*width: 40%;*/
-        /*height: 100%;*/
-        /*background: #204d74;*/
-        /*position: fixed;*/
-        /*top: 49px;*/
-    /*}*/
-/*}*/
-
-
 body{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 #content1{
     width: 100%;
@@ -56,7 +45,7 @@ body{
 }
 
 .menu_head_1{
-    padding-top: 25%;
+    padding-top: 10%;
     width: 100%;
     height: 50%;
     font-size: 12px;
@@ -79,7 +68,6 @@ body{
 .item a {
    color: white;
    padding: 10px;
-
 }
 
 .item a:hover{
@@ -143,7 +131,7 @@ body{
 
 .loginOut {
     color: #FFFFFF;
-    font-size:0.9rem;
+    font-size:15px;
     width: 60%;
     height: 30px;
     border: none;
@@ -268,7 +256,7 @@ body{
     width: 40%;
     position: fixed;
     left: 12%;
-    margin-top: 49px;
+    top: 49px;
     padding-top: 100px;
 }
 
@@ -287,4 +275,63 @@ body{
     left: 52%;
     margin-top: 49px;
     padding-top: 120px;
+}
+
+@media screen and (max-width:960px){
+    html{
+        font-size: 10px;
+    }
+    #common-title{
+        position: absolute;
+        font-size: 20px;
+        top: 20%;
+        left: 20%;
+    }
+    #welcome{
+        background-image: none;
+        left: 28%;
+    }
+    .menu{
+        width: 30%;
+    }
+
+    .send_msg-form{
+        left: 100px;
+        width: 100%;
+        font-size: 10px;
+        position: fixed;
+    }
+
+    .layui-form-label{
+        position: absolute;
+        left: -30px;
+        width: 20px;
+    }
+    #content,#address,#title{
+       position: absolute;
+        margin-left: -40px;
+        width: 190px;
+    }
+    #addMsg-select{
+        position: absolute;
+        margin-left: 70px;
+        width: 280px;
+    }
+
+    .layui-form-switch{
+        margin-left: -230px;
+    }
+
+    #endtime{
+        position: absolute;
+        margin-left: -220px;
+        width: 190px;
+    }
+    #addMsg-button{
+        margin-top: 100px;
+        margin-left: -100px;
+    }
+    #get_map{
+        display: none;
+    }
 }

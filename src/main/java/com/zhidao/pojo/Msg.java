@@ -3,6 +3,7 @@ package com.zhidao.pojo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class Msg {
@@ -12,10 +13,10 @@ public class Msg {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date endtime;
+    private String endtime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date creattime;
+    private String creattime;
 
     private String code;
 
@@ -27,7 +28,7 @@ public class Msg {
 
     private String content;
 
-    public Msg(Integer msgid, String title, Date creattime,Date endtime, String code, String location, String filepath, Integer userid, String content) {
+    public Msg(Integer msgid, String title, String creattime,String endtime, String code, String location, String filepath, Integer userid, String content) {
         this.msgid = msgid;
         this.title = title;
         this.endtime = endtime;
@@ -59,11 +60,11 @@ public class Msg {
         this.title = title == null ? null : title.trim();
     }
 
-    public Date getEndtime() {
+    public String getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(Date endtime) {
+    public void setEndtime(String endtime) {
         this.endtime = endtime;
     }
 
@@ -107,11 +108,11 @@ public class Msg {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getCreatTime() {
+    public String getCreatTime() {
         return creattime;
     }
 
-    public void setCreatTime(Date creatTime) {
+    public void setCreatTime(String creatTime) {
         this.creattime = creatTime;
     }
 

@@ -10,6 +10,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1.0, user-scalable=no">
     <title>我发送的信息</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
@@ -50,7 +51,7 @@
     </c:forEach>
 </div>
 <script>
-    window.onload=allSendMsg();
+
     $(function () {
         $("#msg-search").click(function () {
             $(this).css("border-color",'#97a4ff');

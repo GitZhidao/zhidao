@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author:
  * @data: 2019/3/28 10:14
@@ -46,4 +49,18 @@ public class ImplGetMsgService implements IGetMsgService {
         }
         return ServerResponse.createByErrorMessage("关注失败");
    }
+
+    @Override
+    public ServerResponse<List<Msg>> getAllFocusMsg(int userid) {
+        List<Integer> msgIds=getMsgMapper.selectByUsid(userid);
+        if (msgIds==null){
+            return ServerResponse.createBySuccessMessage("先关注信息");
+        }
+        List<Msg> msgs=new ArrayList<>();
+        for(int i=0;i<msgIds.size()-1;i++){
+            Msg msg=msgMapper.selectByPrimaryKey(msgIds.get(i));
+            msgs.add(msg);
+        }
+        return ServerResponse.createBySuccess(msgs);
+    }
 }

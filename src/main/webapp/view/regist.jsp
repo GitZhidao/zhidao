@@ -42,7 +42,7 @@
                         Sign Up
                     </button>
                     <div class="text-foot">
-                        已有账号？点击登录<a href="${pageContext.request.contextPath}/view/login.jsp" class="login-link">Login</a>
+                        已有账号？点击登录<a href="${pageContext.request.contextPath}/login.jsp" class="login-link">Login</a>
                     </div>
                 </form>
             </div>

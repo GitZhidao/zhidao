@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>添加信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/auth.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.ui.css"/>
@@ -46,16 +47,16 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">单选框</label>
-            <div class="layui-input-block">
+            <div class="layui-input-block" id="addMsg-select">
                 <input type="radio" name="msg_type" title="活动">
                 <input type="radio" name="msg_type" title="签到" checked>
                 <input type="radio" name="msg_type" title="提醒">
             </div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item" id="addMsg-switch">
             <label class="layui-form-label">定位</label>
             <div class="layui-input-block">
-                <input  type="checkbox" name="switch" lay-filter="switchDemo"  lay-skin="switch" lay-text="开启|关闭">
+                <input  type="checkbox"  name="switch" lay-filter="switchDemo"  lay-skin="switch" lay-text="开启|关闭">
             </div>
         </div>
         <div class="layui-form-item" >
@@ -85,14 +86,14 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn"  lay-filter="formDemo" type="button" onclick="addMsg()" >提交</button>
+            <div class="layui-input-block" id="addMsg-button">
+                <button class="layui-btn"  id="addMsg-button-1"  lay-filter="formDemo" type="button" onclick="addMsg()" >提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
 </div>
-<div class="get_map" id="get_map">
+<div class="get_map" id="get_map" >
     <div id='container' style="height:100%;width: 100%"></div>
     <div id="tip"></div>
 </div>
@@ -107,6 +108,7 @@
                 document.getElementById("get_map").style.display="inline";
                 document.getElementById("address").style.background="white";
                 document.getElementById("address").value='默认为当前所在位置';
+                document.getElementById("get_map").style.display="true";
                 $("#address").attr("readOnly",false);
                 getLocation();
             }

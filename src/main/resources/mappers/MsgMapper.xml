@@ -5,8 +5,8 @@
     <constructor >
       <idArg column="msgid" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="creattime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.lang.String" />
+      <arg column="creattime" jdbcType="TIMESTAMP" javaType="java.lang.String" />
       <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="filepath" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -17,8 +17,8 @@
     <constructor >
       <idArg column="msgid" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="creattime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.lang.String" />
+      <arg column="creattime" jdbcType="TIMESTAMP" javaType="java.lang.String" />
       <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="filepath" jdbcType="VARCHAR" javaType="java.lang.String" />

@@ -39,28 +39,28 @@ public class DateTimeUtils {
     }
 
     //结束时间距当前时间临近排序 冒泡法
-    public static List<Msg> rankDate(List<Msg> msgList){
-        Date date=new Date();//获取当前时间
-        Msg msg;
-        for(int i=0;i<msgList.size()-1;i++){
-            for (int j=0;j<msgList.size()-1-i;j++){
-                long date1=msgList.get(j).getEndtime().getTime()-date.getTime();
-                long date2=msgList.get(j+1).getEndtime().getTime()-date.getTime();
-                if (date1>date2){
-                    msg = msgList.get(j);
-                    msgList.set(j, msgList.get(j+1));
-                    msgList.set(j+1, msg);
-                }
-            }
-        }
-        return msgList;
-    }
+//    public static List<Msg> rankDate(List<Msg> msgList){
+//        Date date=new Date();//获取当前时间
+//        Msg msg;
+//        for(int i=0;i<msgList.size()-1;i++){
+//            for (int j=0;j<msgList.size()-1-i;j++){
+//                long date1=msgList.get(j).getEndtime().getTime()-date.getTime();
+//                long date2=msgList.get(j+1).getEndtime().getTime()-date.getTime();
+//                if (date1>date2){
+//                    msg = msgList.get(j);
+//                    msgList.set(j, msgList.get(j+1));
+//                    msgList.set(j+1, msg);
+//                }
+//            }
+//        }
+//        return msgList;
+//    }
 
-    public static List<Msg> ConvertDate(List<Msg> msgs){
-        for (int i=0;i<msgs.size()-1;i++){
-            msgs.get(i).setEndtime(dateToDate(msgs.get(i).getEndtime()));
-            return msgs;
-        }
-        return msgs;
-    }
+//    public static List<Msg> ConvertDate(List<Msg> msgs){
+//        for (int i=0;i<msgs.size()-1;i++){
+//            msgs.get(i).setEndtime(dateToDate(msgs.get(i).getEndtime()));
+//            return msgs;
+//        }
+//        return msgs;
+//    }
 }

@@ -38,7 +38,10 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
     <welcome-file-list>
-        <welcome-file>/view/login.jsp</welcome-file>
+        <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

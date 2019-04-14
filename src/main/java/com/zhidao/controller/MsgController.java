@@ -5,17 +5,12 @@ import com.zhidao.pojo.Msg;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IMsgService;
 import com.zhidao.util.DateTimeUtils;
-import com.zhidao.util.RandNumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.SimpleFormatter;
 
 /**
  * @author: lv
@@ -37,7 +32,7 @@ public class MsgController{
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
         msg.setUserid(user.getUserid());
-        msg.setCreatTime(DateTimeUtils.dateToDate(new Date()));
+        msg.setCreatTime(DateTimeUtils.dateToDate(new Date()).toString());
         System.out.println(msg.getCreatTime());
         return iMsgService.addMsg(msg);
     }
@@ -49,7 +44,7 @@ public class MsgController{
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        ServerResponse serverResponse=iMsgService.findAllMsg(user.getUserid());
+        ServerResponse<List<Msg>> serverResponse=iMsgService.findAllMsg(user.getUserid());
         session.setAttribute("msgs",serverResponse.getData());
         return serverResponse;
     }

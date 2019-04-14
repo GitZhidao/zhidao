@@ -3,6 +3,8 @@ package com.zhidao.dao;
 import com.zhidao.pojo.GetMsg;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author:
  * @data: 2019/3/28 0:38
@@ -24,4 +26,6 @@ public interface GetMsgMapper {
 
     //查询是否用户已经关注
     GetMsg selectMsgByUserIdandMsgId(@Param("msgid") int msgid, @Param("userid") int userId);
+
+    List<Integer> selectByUsid(@Param("userid") int userid);
 }

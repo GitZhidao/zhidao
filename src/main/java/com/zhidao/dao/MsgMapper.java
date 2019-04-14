@@ -25,4 +25,6 @@ public interface MsgMapper {
 
     //根据code查询msgid
     Msg selectMsgByCode(String code);
+
+
 }
