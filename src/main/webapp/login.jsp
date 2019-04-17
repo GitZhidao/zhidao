@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html style="height: 500px">
 <head>
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <title>Login</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
@@ -34,7 +33,7 @@
                         <label>密码</label>
                         <input type="password" id="password" name="password" autocomplete="current-password"  required="required" class="lowin-input" >
                     </div>
-                    <button class="lowin-btn login-btn" type="button" onclick="login()">
+                    <button  id="login_btn" class="lowin-btn login-btn" type="button">
                         Sign In
                     </button>
                     <div class="text-foot">

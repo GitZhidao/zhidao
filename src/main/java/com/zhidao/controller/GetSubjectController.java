@@ -1,12 +1,10 @@
 package com.zhidao.controller;
 
 import com.zhidao.common.ServerResponse;
-import com.zhidao.pojo.GetMsg;
-import com.zhidao.pojo.Msg;
+import com.zhidao.pojo.Subject;
 import com.zhidao.pojo.User;
-import com.zhidao.service.IGetMsgService;
+import com.zhidao.service.IGetSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,37 +13,34 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @author:
- * @data: 2019/3/27 17:49
+ * @author: Mrlv
+ * @data: 2019/4/17 17:12
  * @description:
  * @Version: 1.0
  **/
-@Controller
-@RequestMapping("/getMsg")
-public class GetMsgController {
+public class GetSubjectController {
     @Autowired
-    IGetMsgService iGetMsgService;
+    IGetSubjectService implGetSubjectService;
 
-//    关注信息
-    @RequestMapping(value = "/focusMsg",method = RequestMethod.POST)
+    //    关注信息
+    @RequestMapping(value = "/focusSubject",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> focusMsg(String msgCode, HttpSession session){
+    public ServerResponse<String> focusSubject(String code, HttpSession session){
         User user= (User) session.getAttribute("user");
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        return iGetMsgService.focusMsg(user.getUserid(),msgCode);
+        return implGetSubjectService.focusSubject(user.getUserid(),code);
     }
 
 
-    @RequestMapping("/allFocusMsg")
+    @RequestMapping("/allFocusSubject")
     @ResponseBody
-    public ServerResponse<List<Msg>> allFocusMsg(HttpSession session){
+    public ServerResponse<List<Subject>> allFocusSubject(HttpSession session){
         User user= (User) session.getAttribute("user");
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        return iGetMsgService.getAllFocusMsg(user.getUserid());
+        return implGetSubjectService.getAllFocusSubject(user.getUserid());
     }
-
 }

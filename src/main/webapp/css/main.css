@@ -268,70 +268,78 @@ body{
     padding: 8px;
 }
 
+.addMsg-tishi{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    display: inline-block;
+    color: rgba(0,0,0,.24);
+    font-size: 35px;
+}
+
 .get_map{
     height: 95%;
     width: 48%;
     position: fixed;
     left: 52%;
-    margin-top: 49px;
-    padding-top: 120px;
+    top: 49px;
 }
 
-@media screen and (max-width:960px){
-    html{
-        font-size: 10px;
-    }
-    #common-title{
-        position: absolute;
-        font-size: 20px;
-        top: 20%;
-        left: 20%;
-    }
-    #welcome{
-        background-image: none;
-        left: 28%;
-    }
-    .menu{
-        width: 30%;
-    }
+/*@media screen and (max-width:960px){*/
+    /*html{*/
+        /*font-size: 10px;*/
+    /*}*/
+    /*#common-title{*/
+        /*position: absolute;*/
+        /*font-size: 20px;*/
+        /*top: 20%;*/
+        /*left: 20%;*/
+    /*}*/
+    /*#welcome{*/
+        /*background-image: none;*/
+        /*left: 28%;*/
+    /*}*/
+    /*.menu{*/
+        /*width: 30%;*/
+    /*}*/
 
-    .send_msg-form{
-        left: 100px;
-        width: 100%;
-        font-size: 10px;
-        position: fixed;
-    }
+    /*.send_msg-form{*/
+        /*left: 100px;*/
+        /*width: 100%;*/
+        /*font-size: 10px;*/
+        /*position: fixed;*/
+    /*}*/
 
-    .layui-form-label{
-        position: absolute;
-        left: -30px;
-        width: 20px;
-    }
-    #content,#address,#title{
-       position: absolute;
-        margin-left: -40px;
-        width: 190px;
-    }
-    #addMsg-select{
-        position: absolute;
-        margin-left: 70px;
-        width: 280px;
-    }
+    /*.layui-form-label{*/
+        /*position: absolute;*/
+        /*left: -30px;*/
+        /*width: 20px;*/
+    /*}*/
+    /*#content,#address,#title{*/
+       /*position: absolute;*/
+        /*margin-left: -40px;*/
+        /*width: 190px;*/
+    /*}*/
+    /*#addMsg-select{*/
+        /*position: absolute;*/
+        /*margin-left: 70px;*/
+        /*width: 280px;*/
+    /*}*/
 
-    .layui-form-switch{
-        margin-left: -230px;
-    }
+    /*.layui-form-switch{*/
+        /*margin-left: -230px;*/
+    /*}*/
 
-    #endtime{
-        position: absolute;
-        margin-left: -220px;
-        width: 190px;
-    }
-    #addMsg-button{
-        margin-top: 100px;
-        margin-left: -100px;
-    }
-    #get_map{
-        display: none;
-    }
-}
+    /*#endtime{*/
+        /*position: absolute;*/
+        /*margin-left: -220px;*/
+        /*width: 190px;*/
+    /*}*/
+    /*#addMsg-button{*/
+        /*margin-top: 100px;*/
+        /*margin-left: -100px;*/
+    /*}*/
+    /*!*#get_map{*!*/
+        /*!*display: none;*!*/
+    /*!*}*!*/
+/*}*/

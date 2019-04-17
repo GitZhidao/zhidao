@@ -6,30 +6,32 @@ package com.zhidao.pojo;
  * @description:
  * @Version: 1.0
  **/
-public class GetMsg {
-    private String id;
+public class GetSubject {
+
+
+    private Integer id;
     private Integer userid;
-    private Integer msgid;
+    private Integer subid;
     private String categoryname;
     private Integer status;
 
-    public GetMsg(String id, Integer userid, Integer msgid, String categoryname, Integer status) {
+    public GetSubject(Integer id, Integer userid, Integer subid, String categoryname, Integer status) {
         this.id = id;
         this.userid = userid;
-        this.msgid = msgid;
+        this.subid = subid;
         this.categoryname = categoryname;
         this.status = status;
     }
 
-    public GetMsg() {
+    public GetSubject() {
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getUserid() {
@@ -40,12 +42,12 @@ public class GetMsg {
         this.userid = userid;
     }
 
-    public Integer getMsgid() {
-        return this.msgid;
+    public Integer getSubid() {
+        return this.subid;
     }
 
-    public void setMsgid(Integer msgid) {
-        this.msgid = msgid;
+    public void setSubid(Integer msgid) {
+        this.subid = msgid;
     }
 
     public String getCategoryname() {
@@ -62,5 +64,16 @@ public class GetMsg {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "GetSubject{" +
+                "id='" + id + '\'' +
+                ", userid=" + userid +
+                ", subid=" + subid +
+                ", categoryname='" + categoryname + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

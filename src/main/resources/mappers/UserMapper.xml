@@ -91,4 +91,12 @@
     set password=#{newPassword}
     where userid=#{userid}
   </update>
+  <select id="checkEmail" resultType="integer" parameterType="java.lang.String">
+      select count(1) from z_user
+      where email=#{email}
+  </select>
+  <select id="checkUsername" resultType="integer" parameterType="java.lang.String">
+      select count(1) from z_user
+      where username=#{username}
+  </select>
 </mapper>

@@ -3,8 +3,22 @@ layui.use('element',function () {
     var isShow = true;
 });
 
+$(function (){
+        var layer=layui.layer,colorpicker=layui.colorpicker,$ = layui.$,form=layui.form;
+        $("#login_btn").click(function () {
+            login();
+        });
+        $("#addSubject").click(function () {
+            addSubject();
+        });
+        $("#allSubject-href").click(function () {
+            allSubject();
+        });
+});
+
 function register(){
     layui.use('layer',function () {
+        var index=layer.load();
         var user={
             "username":$("#username").val(),
             "password":$("#password").val(),
@@ -17,16 +31,17 @@ function register(){
             contentType:"application/json",
             async: true,
             error:function(){
-                layer.alert("注册失败")
+                layer.close(index);
+                layer.alert("注册失败",{icon:5});
             },
             success:function (data) {
+                layer.close(index);
                 if (data.status===0){
                     layer.alert("注册成功");
-                    window.location.href="../login.jsp";
                 }
                 else
                 {
-                    layer.alert(data.msg);
+                    layer.alert(data.msg,{icon:5});
                 }
             }
         });
@@ -37,7 +52,7 @@ function login(){
     layui.use('layer',function () {
         var layer=layui.layer;
         layer.ready(function(){
-            var index=layer.load(0);
+            var index=layer.load();
             var user={
                 "username":$("#username").val(),
                 "password":$("#password").val()
@@ -58,7 +73,7 @@ function login(){
                         window.location.href='/view/main.jsp';
                     }
                     else {
-                        layer.alert(data.msg, {icon: 6});
+                        layer.alert(data.msg, {icon: 5});
                     }
                 })
             });
@@ -220,19 +235,19 @@ function addMsg() {
 
 }
 
-function focusMsg() {
+function focusSubject() {
     layui.use('layer',function () {
         var layer=layui.layer;
         layer.prompt({
-            title: '关注信息',
-            placeholder:'输入信息id',
+            title: '关注主题',
+            placeholder:'输入主体id',
             offset:['40%', '42%']
         }, function(val, index){
             var category=$("#categoryname").val();
             $.ajax({
-                url:"../getMsg/focusMsg.do",
+                url:"../getSubject/focusSubject.do",
                 type:"POST",
-                data:{"msgCode":val},
+                data:{"code":val},
                 error:function () {
                     layer.msg("error");
                 },
@@ -264,11 +279,59 @@ function allSendMsg() {
     })
 }
 
-function allFocusMsg() {
-        $.ajax({
-            url:"../getMsg/allFocusMsg.do",
-            type:post,
-            async:false,
-            error:f
+// function allFocusMsg() {
+//         $.ajax({
+//             url:"../getMsg/allFocusMsg.do",
+//             type:post,
+//             async:false,
+//             error:f
+//     })
+// }
+
+function allSubject() {
+    var index=layer.load();
+    $.ajax({
+        url:"../subject/allSubject.do",
+        type:post,
+        error:function () {
+            layer.close(index);
+            alert("error");
+        },
+        success:function (data) {
+
+        }
     })
 }
+
+function addSubject() {
+    var layer=layui.layer;
+    layer.prompt({
+        type:1,
+        title: '发布主题',
+        placeholder:'输入信息id',
+        offset:['40%', '42%'],
+        area:["30%"]
+    }, function(val, index){
+
+        $.ajax({
+            url:"../subject/addSubject.do",
+            type:"POST",
+            data:{"subtitle":val},
+            error:function () {
+                layer.msg("error");
+            },
+            success:function (data) {
+                layer.alert(data.msg);
+                if (data.status===2){
+                    window.location.href="../login.jsp";
+                }
+                if (data.status===0) {
+                    layer.close(index);
+                }
+            }
+        });
+    });
+
+}
+
+

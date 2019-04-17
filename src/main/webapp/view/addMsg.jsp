@@ -93,7 +93,10 @@
         </div>
     </form>
 </div>
-<div class="get_map" id="get_map" >
+<div class="get_map" id="tishi">
+    <span class="addMsg-tishi">请先开启定位</span>
+</div>
+<div class="get_map" id="get_map" style="display: none" >
     <div id='container' style="height:100%;width: 100%"></div>
     <div id="tip"></div>
 </div>
@@ -117,7 +120,7 @@
                 $("#address").attr("readOnly","true");
                 document.getElementById("address").value=null;
                 document.getElementById("get_map").style.display="none";
-            }
+        }
         });
     });
     layui.use('laydate',function () {

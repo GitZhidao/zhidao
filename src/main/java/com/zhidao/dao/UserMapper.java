@@ -18,5 +18,9 @@ public interface UserMapper {
 
     User selectByUsername(@Param("username") String username);
 
+    int checkEmail(@Param("email") String email);
+
+    int checkUsername(@Param("username") String username);
+
     int updateById(@Param("userid") int userid,@Param("newPassword") String newPassword);
 }

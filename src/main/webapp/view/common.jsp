@@ -10,7 +10,7 @@
 <div id="content1">
     <div class="head">
         <div class="con">
-            <img src="/images/newicon.jpg" width="100%" height="100%">
+            <img src="${pageContext.request.contextPath}/images/newicon.jpg" width="100%" height="100%">
         </div>
         <h1 style="margin-left: 90px" id="common-title">Code is everything</h1>
     </div>
@@ -23,7 +23,7 @@
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">修改信息</a></dd>
                             <dd><a href="javascript:;">安全管理</a></dd>
-                            <dd><a href="javascript:;">退了</a></dd>
+                            <dd><a onclick="loginOut()">退了</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -33,30 +33,26 @@
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
                 <li class="layui-nav-item ">
-                    <a href="javaScript:"><span>发布信息</span></a>
+                    <a href="javaScript:"><span>发布</span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="addMsg.jsp"><span>活动</span></a></dd>
-                        <dd><a href="javascript:"><span>签到</span></a></dd>
-                        <dd><a href="">提醒</a></dd>
+                        <dd><a id="addSubject"><span>主题</span></a></dd>
+                        <dd><a href="addMsg.jsp"><span>信息</span></a></dd>
+
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a >我的信息</a>
+                    <a >我的主题</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="findAllMsg.jsp" onclick="allSendMsg()"><span>发布的信息</span></a></dd>
-                        <dd><a href="allFocusMsg.jsp"><span>关注的信息</span></a></dd>
+                        <dd><a href="allSubject.jsp" id="allSubject-href"><span>发布的主题</span></a></dd>
+                        <dd><a href="allFocusMsg.jsp"><span>关注的主题</span></a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a onclick="focusMsg()">关注信息</a></li>
-                <li class="layui-nav-item"><a href="userInform.jsp">个人信息</a></li>
+                <li class="layui-nav-item"><a onclick="focusMsg()">关注主题</a></li>
+                <li class="layui-nav-item"><a href="userInform.jsp">推荐</a></li>
             </ul>
             <div id="menu-separator">
                 <hr/>
             </div>
         </div>
-
-            <div id="menu-foot">
-                <button id="loginOut" class="loginOut" type="button" onclick="loginOut()">退出登录</button>
-            </div>
     </div >
 </div>

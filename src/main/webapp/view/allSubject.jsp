@@ -29,26 +29,28 @@
 </div>
 <div class="msg-list" id="msg-list">
     <%--<jsp:useBean id="msgs" scope="session" type="java.util.List"/>--%>
-    <c:forEach var="msg" items="${msgs}">
+    <c:forEach var="subject" items="${subjects}">
         <ul class="layui-timeline">
             <li class="layui-timeline-item">
                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                 <div class="layui-timeline-content layui-text">
-                    <h3 class="layui-timeline-title" style="color: #eb7350;left: -200px;font-size: 15px">${msg.endtime}</h3>
                     <div class="layui-collapse" lay-accordion>
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">
                                 <i class="layui-icon layui-icon-list msg-icon" style="color: #ff3683;font-size: 25px"></i>
-                                <label class="msg-title">${msg.title}</label>
+                                <label class="msg-title">${subject.subtitle}</label>
                             </h2>
                             <div class="layui-colla-content">
-                                <p class="msg-content">${msg.content}</p></div>
+                                <p class="msg-content">${subject.code}</p></div>
                         </div>
                     </div>
                 </div>
             </li>
         </ul>
     </c:forEach>
+</div>
+<div class="get_map">
+    <span class="addMsg-tishi">点击信息查看详情</span>
 </div>
 <script>
 

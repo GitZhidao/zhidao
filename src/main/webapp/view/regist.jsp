@@ -5,7 +5,7 @@
   Time: 19:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>账户注册</title>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="lowin-group">
                         <label>email</label>
-                        <label for="email"></label><input type="password" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
+                        <label for="email"></label><input type="email" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
                     </div>
                     <button class="lowin-btn" id="login_btn" type="button" onclick="register()">
                         Sign Up
