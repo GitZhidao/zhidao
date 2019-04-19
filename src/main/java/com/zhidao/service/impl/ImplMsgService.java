@@ -2,7 +2,9 @@ package com.zhidao.service.impl;
 
 import com.zhidao.common.ServerResponse;
 import com.zhidao.dao.MsgMapper;
+import com.zhidao.dao.SubjectMapper;
 import com.zhidao.pojo.Msg;
+import com.zhidao.pojo.Subject;
 import com.zhidao.service.IMsgService;
 import com.zhidao.util.DateTimeUtils;
 import com.zhidao.util.RandNumberUtils;
@@ -24,21 +26,25 @@ import java.util.List;
 @Service
 public class ImplMsgService implements IMsgService {
     @Autowired
-   MsgMapper msgMapper;
+    MsgMapper msgMapper;
+
+    @Autowired
+    SubjectMapper subjectMapper;
+
     @Override
     @ResponseBody
     public ServerResponse<Msg> addMsg(@RequestBody Msg msg) {
-        msg.setCode(RandNumberUtils.randNumber());
-        int row=msgMapper.insertSelective(msg);
-        if (row==0){
-            return ServerResponse.createByErrorMessage("发布失败");
+        int row = msgMapper.insertSelective(msg);
+        if (row == 0) {
+            return ServerResponse.createByErrorMessage("添加失败");
         }
-        return ServerResponse.createBySuccess("发布成功,你的信息码是：",msg);
+        return ServerResponse.createBySuccessMessage("添加成功");
     }
 
     @Override
-    public ServerResponse<List<Msg>> findAllMsg(int userid) {
-        List<Msg> msgs=msgMapper.selectAllMsgByUserId(userid);
+    public ServerResponse<List<Msg>> findAllMsgByCode(String code) {
+        int subid=subjectMapper.selectSubIdByCode(code);
+        List<Msg> msgs=msgMapper.selectAllMsgBySubid(subid);
         if (msgs!=null){
             return ServerResponse.createBySuccess(msgs);
         }

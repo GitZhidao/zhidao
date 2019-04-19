@@ -5,6 +5,7 @@ import com.zhidao.pojo.Subject;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IGetSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +19,12 @@ import java.util.List;
  * @description:
  * @Version: 1.0
  **/
+@Controller
+@RequestMapping("/getSubject")
 public class GetSubjectController {
-    @Autowired
-    IGetSubjectService implGetSubjectService;
 
+    @Autowired
+    IGetSubjectService iGetSubjectService;
     //    关注信息
     @RequestMapping(value = "/focusSubject",method = RequestMethod.POST)
     @ResponseBody
@@ -30,7 +33,7 @@ public class GetSubjectController {
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        return implGetSubjectService.focusSubject(user.getUserid(),code);
+        return iGetSubjectService.focusSubject(user.getUserid(),code);
     }
 
 
@@ -41,6 +44,6 @@ public class GetSubjectController {
         if (user==null){
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        return implGetSubjectService.getAllFocusSubject(user.getUserid());
+        return iGetSubjectService.getAllFocusSubject(user.getUserid());
     }
 }

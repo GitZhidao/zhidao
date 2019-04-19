@@ -18,26 +18,37 @@ public class Msg {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String creattime;
 
-    private String code;
-
     private String location;
 
     private String filepath;
 
-    private Integer userid;
-
     private String content;
 
-    public Msg(Integer msgid, String title, String creattime,String endtime, String code, String location, String filepath, Integer userid, String content) {
+    private Integer subid;
+
+    public Msg(Integer msgid, String title, String endtime, String creattime, String location, String filepath, Integer userid, String content, Integer subid) {
         this.msgid = msgid;
         this.title = title;
         this.endtime = endtime;
-        this.creattime=creattime;
-        this.code = code;
+        this.creattime = creattime;
         this.location = location;
         this.filepath = filepath;
-        this.userid = userid;
         this.content = content;
+        this.subid = subid;
+    }
+
+    @Override
+    public String toString() {
+        return "Msg{" +
+                "msgid=" + msgid +
+                ", title='" + title + '\'' +
+                ", endtime='" + endtime + '\'' +
+                ", creattime='" + creattime + '\'' +
+                ", location='" + location + '\'' +
+                ", filepath='" + filepath + '\'' +
+                ", content='" + content + '\'' +
+                ", subid=" + subid +
+                '}';
     }
 
     public Msg() {
@@ -68,14 +79,6 @@ public class Msg {
         this.endtime = endtime;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
-
     public String getLocation() {
         return location;
     }
@@ -90,14 +93,6 @@ public class Msg {
 
     public void setFilepath(String filepath) {
         this.filepath = filepath == null ? null : filepath.trim();
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
     }
 
     public String getContent() {
@@ -116,9 +111,11 @@ public class Msg {
         this.creattime = creatTime;
     }
 
-    @Override
-    public String toString() {
-        return "Msg[msgId="+msgid+",title="+title+",content="+content+",creaTime="+creattime+",endtime="+endtime+",userid="+userid+",code="+code
-                +",location="+location+",filepath"+filepath+"]";
+    public Integer getSubid() {
+        return subid;
+    }
+
+    public void setSubid(Integer subid) {
+        this.subid = subid;
     }
 }

@@ -21,10 +21,10 @@ public interface MsgMapper {
     int updateByPrimaryKey(Msg record);
 
     //查询某一用户发送的所有时间。
-    List<Msg> selectAllMsgByUserId(@Param("userid") int userid);
+    List<Msg> selectAllMsgBySubid(@Param("subid") int subid);
 
     //根据code查询msgid
-    Msg selectMsgByCode(String code);
+    Msg selectMsgBySubid(int subid);
 
 
 }

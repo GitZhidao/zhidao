@@ -8,11 +8,14 @@ $(function (){
         $("#login_btn").click(function () {
             login();
         });
-        $("#addSubject").click(function () {
+        $("#addSubject-href").click(function () {
             addSubject();
         });
-        $("#allSubject-href").click(function () {
-            allSubject();
+        $("#focusSubject-href").click(function () {
+            focusSubject();
+        });
+        $("#addMsg-button-1").click(function () {
+            addMsg();
         });
 });
 
@@ -206,7 +209,8 @@ function addMsg() {
             "title":$("#title").val(),
             "location":$("#location").val(),
             "endtime":$("#endtime").val(),
-            "content":$("#content").val()
+            "content":$("#content").val(),
+            "subid":$('#subject-select option:selected').val()
         };
         $.ajax({
             url:"../msg/sendMsg.do",
@@ -223,7 +227,7 @@ function addMsg() {
                     window.location.href="../login.jsp";
                 }
                 if(data.status===0){
-                    layer.alert(data.msg+data.data.code);
+                    layer.msg(data.msg);
                     document.getElementById("add_msg").reset();
                 }
                 else {
@@ -235,13 +239,49 @@ function addMsg() {
 
 }
 
+function allMsg(i) {
+    layui.use(['layer','element'],function () {
+        var layer=layui.layer;
+        var element=layui.element;
+        var code=$("#label"+i).text();
+        $.ajax({
+            url:"../msg/allMsgByCode.do",
+            type:"POST",
+            data:{"code":code},
+            error:function () {
+                alert("error");
+            },
+            success:function (data) {
+                $("#msg-list").empty();
+                document.getElementById("subject-tishi").style.display="none";
+                $.each(data.data,function (i,item) {
+                    $("#msg-list").append(
+                        "<ul class=\"layui-timeline\">"+
+                        "<li class=\"layui-timeline-item\" style=\"margin-right: 15%\">"+
+                        "<i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i>"+
+                        "<div class=\"layui-timeline-content layui-text\">"+
+                        "<h3 class=\"layui-timeline-title\">"+item.endtime+"</h3>"+
+                        "<div class=\"layui-collapse\">"+
+                        "<div class=\"layui-colla-item\">"+
+                        "<h2 class=\"layui-colla-title\">"+item.title+
+                        "<i class=\"layui-icon layui-icon-reply-fill\" style=\"position: absolute;left: 10px\"></i>"+
+                        "</h2>"+
+                        "<div class=\"layui-colla-content layui-show\">"+item.content+"</div>"+
+                        "</div>"+"</div>"+"</div>"+"</li>"+"</ul>"
+                    )
+                })
+            }
+        })
+    })
+}
+
 function focusSubject() {
     layui.use('layer',function () {
         var layer=layui.layer;
         layer.prompt({
             title: '关注主题',
-            placeholder:'输入主体id',
-            offset:['40%', '42%']
+            placeholder:'输入主题编号',
+            offset:['40%', '40%']
         }, function(val, index){
             var category=$("#categoryname").val();
             $.ajax({
@@ -262,76 +302,95 @@ function focusSubject() {
                 }
             });
         });
-        $(".layui-layer-content").append("<br/><input type=\"text\" name=\"categoryname\" id= \"categoryname\" class=\"layui-input\" placeholder=\"类别\"/>");
     });
 }
 
-function allSendMsg() {
-    $.ajax({
-        url:"../msg/allSendMsg.do",
-        type:"POST",
-        async: false,
-        error:function () {
-            alert("error");
-        },
-        success:function (data) {
-        }
+function allSendSubject() {
+    layui.use('layer',function () {
+        var index=layer.load();
+        $("#common-title").html("所有主题");
+        $.ajax({
+            url:"../subject/allSendSubject.do",
+            type:"POST",
+            async: false,
+            error:function () {
+                layer.close(index);
+                alert("error");
+            },
+            success:function (data) {
+                layer.close(index);
+               $.each(data.data,function (i,item) {
+                   $("#subject-list").append(
+                       "<li class=\"layui-timeline-item\">"+
+                        "<div class=\"layui-timeline-content layui-text\" >"
+                           +"<div  onclick=\"allMsg("+i+")\" class=\"layui-collapse\" lay-accordion>"
+                               +"<h2  class=\"layui-colla-title\">"
+                               +"<i class=\"layui-icon layui-icon-template-1 subject-icon\" style=\"color: #ff3683;font-size: 25px\"></i>"
+                               +"<label class=\"subject-title\">"+item.subtitle+"</label>"
+                               +"<label id=\"label"+i+"\"  class=\"subject-code\">"+item.code+"</label>"
+                               +"</h2>"+
+                              "</div>"+
+                       "</div>"+"</li>"
+                   );
+               })
+            }
+        })
     })
 }
 
-// function allFocusMsg() {
-//         $.ajax({
-//             url:"../getMsg/allFocusMsg.do",
-//             type:post,
-//             async:false,
-//             error:f
-//     })
-// }
-
-function allSubject() {
-    var index=layer.load();
-    $.ajax({
-        url:"../subject/allSubject.do",
-        type:post,
-        error:function () {
-            layer.close(index);
-            alert("error");
-        },
-        success:function (data) {
-
-        }
+function showSendSubject() {
+    layui.use('layer',function () {
+        $("#common-title").html("添加信息");
+        var index=layer.load();
+        $.ajax({
+            url:"../subject/allSendSubject.do",
+            type:"POST",
+            async: false,
+            error:function () {
+                layer.close(index);
+                alert("error");
+            },
+            success:function (data) {
+                layer.close(index);
+                $.each(data.data,function (i,item) {
+                    $("#subject-select").append(
+                        "<option value='"+item.subid+"'>"+item.subtitle+"</option>"
+                    );
+                })
+            }
+        })
     })
 }
 
 function addSubject() {
-    var layer=layui.layer;
-    layer.prompt({
-        type:1,
-        title: '发布主题',
-        placeholder:'输入信息id',
-        offset:['40%', '42%'],
-        area:["30%"]
-    }, function(val, index){
-
-        $.ajax({
-            url:"../subject/addSubject.do",
-            type:"POST",
-            data:{"subtitle":val},
-            error:function () {
-                layer.msg("error");
-            },
-            success:function (data) {
-                layer.alert(data.msg);
-                if (data.status===2){
-                    window.location.href="../login.jsp";
+    layui.use('layer',function () {
+        var layer=layui.layer;
+        layer.prompt({
+            type:1,
+            title: '发布主题',
+            placeholder:'输入主题内容',
+            offset:['30%', '40%'],
+            area:["30%"]
+        }, function(val, index){
+            $.ajax({
+                url:"../subject/addSubject.do",
+                type:"POST",
+                data:{"subtitle":val},
+                error:function () {
+                    layer.msg("error");
+                },
+                success:function (data) {
+                    layer.alert(data.msg);
+                    if (data.status===2){
+                        window.location.href="../login.jsp";
+                    }
+                    if (data.status===0) {
+                        layer.close(index);
+                    }
                 }
-                if (data.status===0) {
-                    layer.close(index);
-                }
-            }
+            });
         });
-    });
-
+        $(".layui-layer-content").append("<br/><input type=\"text\" name=\"categoryname\" id= \"categoryname\" class=\"layui-input\" placeholder=\"类别\"/>");
+    })
 }
-
 

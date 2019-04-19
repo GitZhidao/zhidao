@@ -20,7 +20,7 @@
     </select>
     <select id="selectAllSubjectByUserId" resultType="com.zhidao.pojo.Subject" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
+        subid,subtitle,code
         from z_sub where userid=#{userid}
     </select>
     <select id="selectSubjectByCode" resultType="com.zhidao.pojo.Subject" parameterType="java.lang.String">
@@ -33,6 +33,11 @@
         <include refid="Base_Column_List"/>
         from z_sub
         where userid=#{userid} and  subtitle=#{subtitle}
+    </select>
+    <select id="selectSubIdByCode"  parameterType="java.lang.String" resultType="java.lang.Integer">
+        select subid
+        from z_sub
+        where code=#{code}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from z_sub

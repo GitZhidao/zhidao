@@ -8,5 +8,5 @@ import java.util.List;
 public interface IMsgService {
      ServerResponse<Msg> addMsg(Msg msg);
 
-     ServerResponse<List<Msg>> findAllMsg(int userid);
+     ServerResponse<List<Msg>> findAllMsgByCode(String code);
 }

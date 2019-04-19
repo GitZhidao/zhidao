@@ -59,7 +59,14 @@
                 <input  type="checkbox"  name="switch" lay-filter="switchDemo"  lay-skin="switch" lay-text="开启|关闭">
             </div>
         </div>
-        <div class="layui-form-item" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择主题</label>
+            <div class="layui-input-block">
+                <select id="subject-select" name="city" lay-verify="required" lay-search>
+
+                </select>
+            </div>
+        <div class="layui-form-item" style="margin-top: 10px">
             <label class="layui-form-label">结束时间</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline" style="left:27%">
@@ -87,9 +94,10 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block" id="addMsg-button">
-                <button class="layui-btn"  id="addMsg-button-1"  lay-filter="formDemo" type="button" onclick="addMsg()" >提交</button>
+                <button class="layui-btn"  id="addMsg-button-1"  lay-filter="formDemo" type="button">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
+        </div>
         </div>
     </form>
 </div>
@@ -132,7 +140,8 @@
             min:'new Date()',
             value:new Date()
         });
-    })
+    });
+    window.onload=showSendSubject();
 </script>
 </body>
 </html>

@@ -39,7 +39,7 @@ public class SubjectController {
         return iSubjectService.addSubject(subject);
     }
 
-    @RequestMapping(value = "/allSubject")
+    @RequestMapping(value = "/allSendSubject")
     @ResponseBody
     public ServerResponse<List<Subject>> findAllSendMsg(HttpSession session){
         User user= (User)session.getAttribute("user");

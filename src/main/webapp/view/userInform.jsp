@@ -49,5 +49,10 @@
         </div>
     </div>
 </div>
+<script>
+    function test() {
+        $("")
+    }
+</script>
 </body>
 </html>

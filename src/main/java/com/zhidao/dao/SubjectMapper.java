@@ -21,8 +21,10 @@ public interface SubjectMapper {
     //查询某一用户发送的所有时间。
     List<Subject> selectAllSubjectByUserId(@Param("userid") int userid);
 
-    //根据code查询msgid
+    //根据code查询主体题
     Subject selectSubjectByCode(String code);
+
+    int selectSubIdByCode(@Param("code") String code);
 
     Subject selectByUseridAndTitle(@Param("userid") int userid,@Param("subtitle") String subtitle);
 }

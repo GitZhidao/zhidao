@@ -31,21 +31,19 @@ public class MsgController{
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        msg.setUserid(user.getUserid());
         msg.setCreatTime(DateTimeUtils.dateToDate(new Date()).toString());
-        System.out.println(msg.getCreatTime());
         return iMsgService.addMsg(msg);
     }
-    //查找所以已发送信息
-    @RequestMapping(value = "/allSendMsg")
+
+    //跟具查信息已发送信息
+    @RequestMapping(value = "/allMsgByCode",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<List<Msg>> findAllSendMsg(HttpSession session){
+    public ServerResponse<List<Msg>> findMsgByCode(String code,HttpSession session){
+        System.out.println(code);
         User user= (User)session.getAttribute("user");
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(2,"用户未登录无法查看");
         }
-        ServerResponse<List<Msg>> serverResponse=iMsgService.findAllMsg(user.getUserid());
-        session.setAttribute("msgs",serverResponse.getData());
-        return serverResponse;
+        return iMsgService.findAllMsgByCode(code);
     }
 }
