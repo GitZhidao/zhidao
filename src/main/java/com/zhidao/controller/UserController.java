@@ -1,19 +1,18 @@
 package com.zhidao.controller;
 
+
+import com.alibaba.fastjson.JSONObject;
+import com.zhenzi.sms.ZhenziSmsClient;
 import com.zhidao.common.ServerResponse;
 import com.zhidao.pojo.User;
 import com.zhidao.service.IUserService;
+import com.zhidao.util.RandNumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author:
@@ -43,8 +42,37 @@ public class UserController{
 
     //用户注册时会转到该方法
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public @ResponseBody ServerResponse<String> regist(@RequestBody User user){
-        return iUserService.regist(user);
+    @ResponseBody
+    public  ServerResponse<String> regist(@RequestBody User user,HttpSession session){
+        String verifyCode=user.getCode();
+        JSONObject jsonObject= (JSONObject) session.getAttribute("verifyCode");
+        if (!jsonObject.getString("verifyCode").equals(user.getCode())){
+            return ServerResponse.createByErrorMessage("验证码错误");
+        }
+        if ((System.currentTimeMillis() - jsonObject.getLong("createTime")) > 1000 * 60 * 5){
+            return ServerResponse.createByErrorMessage("验证码失效");
+        }
+        else {
+            return iUserService.regist(user);
+        }
+    }
+
+    @RequestMapping(value = "/sendVerifyCode",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<String> sendVerifyCode(@RequestParam("username")String username,HttpSession session) throws Exception {
+        JSONObject json=null;
+        String verifyCode= RandNumberUtils.varifyCode();
+        ZhenziSmsClient client = new ZhenziSmsClient("https://sms_developer.zhenzikj.com","101335","449cfe91-6a1f-4a90-9f7d-b51b245469d5");
+        String result = client.send(username, "您正在注册吱道信息系统，验证码为:" + verifyCode + "，该码有效期为5分钟，请勿告诉他人！");
+        json=JSONObject.parseObject(result);
+        if (json.getIntValue("code")!=0){
+            return ServerResponse.createByErrorMessage("发送验证码失败");
+        };
+        json=new JSONObject();
+        json.put("verifyCode",verifyCode);
+        json.put("verifyTime",System.currentTimeMillis());
+        session.setAttribute("verifyCode", json);
+        return ServerResponse.createBySuccess("发送成功");
     }
 
     //修改密码 传登陆时的user，修改密码输入时封装的newuser

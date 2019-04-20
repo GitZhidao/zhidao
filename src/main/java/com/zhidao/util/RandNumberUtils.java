@@ -2,6 +2,7 @@ package com.zhidao.util;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 
 public class RandNumberUtils {
 
@@ -14,5 +15,11 @@ public class RandNumberUtils {
         String  formDate =sdf.format(date);
         String no = formDate.substring(12);//取末尾五位
         return "zd"+no;//返回DX开头的编号
+    }
+
+    //生成六位验证码
+    public static String varifyCode() {
+        //用当前时间精确到毫秒，截取末尾五位
+        return  String.valueOf(new Random().nextInt(899999) + 100000);
     }
 }

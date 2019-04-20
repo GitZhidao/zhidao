@@ -12,9 +12,9 @@
     <sql id="Base_Column_List" >
     subid,subtitle,code, userid
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultType="com.zhidao.pojo.Subject" parameterType="java.lang.Integer" >
         select
-        <include refid="Base_Column_List" />
+        subid,subtitle,code
         from z_sub
         where subid = #{subid,jdbcType=INTEGER}
     </select>

@@ -18,5 +18,21 @@
 </head>
 <body>
 <jsp:include page="/view/common.jsp"/>
+<div class="subject-search" id="subject-search">
+    <label>
+        <input class="subject-search-input" id="subject-search-input" placeholder="输入搜索信息">
+        <i class="layui-icon layui-icon-search" style=" position: absolute;right: 0px;font-size: 25px"></i>
+    </label>
+</div>
+<div class="subject-list" id="focusSubject-list">
+</div>
+<div class="get_map" id="focus-subject-tishi">
+    <span class="addSubject-tishi">点击主题查看详情</span>
+</div>
+<div class="msg-list" id="focus-msg-list">
+</div>
+<script>
+    window.onload=allFocusSubject();
+</script>
 </body>
 </html>

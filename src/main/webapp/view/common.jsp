@@ -44,7 +44,7 @@
                     <a >我的主题</a>
                     <dl class="layui-nav-child">
                         <dd><a href="allSubject.jsp" id="allSendSubject-href"><span>发布的主题</span></a></dd>
-                        <dd><a  href="allFocusMsg.jsp"><span>关注的主题</span></a></dd>
+                        <dd><a  href="allFocusSubject.jsp"><span>关注的主题</span></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a id="focusSubject-href">关注主题</a></li>

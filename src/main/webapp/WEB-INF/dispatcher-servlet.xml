@@ -15,6 +15,7 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/user/login.do"/>
             <mvc:exclude-mapping path="/user/register.do"/>
+            <mvc:exclude-mapping path="/user/sendVerifyCode.do"/>
             <bean class="com.zhidao.common.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

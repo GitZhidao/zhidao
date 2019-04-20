@@ -48,7 +48,7 @@ public class ImplGetSubjectService implements IGetSubjectService {
             return ServerResponse.createBySuccessMessage("先关注信息");
         }
         List<Subject> subjects=new ArrayList<>();
-        for(int i=0;i<subids.size()-1;i++){
+        for(int i=0;i<subids.size();i++){
             Subject subject=subjectMapper.selectByPrimaryKey(subids.get(i));
             subjects.add(subject);
         }

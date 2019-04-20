@@ -9,11 +9,35 @@ public class User {
 
     private String email;
 
-    public User(Integer userid, String username, String password, String email) {
+    private String code;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", code='" + code + '\'' +
+                '}';
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+
+
+    public User(Integer userid, String username, String password, String email,String code) {
         this.userid = userid;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.code=code;
     }
 
     public User() {

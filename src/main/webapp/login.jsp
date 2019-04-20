@@ -5,18 +5,20 @@
   Time: 15:03
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html style="height: 500px">
+<html>
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/layui/layui.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/zhidao.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
-<div class="lowin lowin-blue">
+<div class="lowin lowin-blue login-login">
     <div class="lowin-brand">
         <img style="width: 100%;height: 100%;border-radius: 50%" src="${pageContext.request.contextPath}/images/newicon.jpg" alt="logo">
     </div>
@@ -33,7 +35,7 @@
                         <label>密码</label>
                         <input type="password" id="password" name="password" autocomplete="current-password"  required="required" class="lowin-input" >
                     </div>
-                    <button  id="login_btn" class="lowin-btn login-btn" type="button">
+                    <button id="login_btn" class="lowin-btn login-btn" type="button">
                         Sign In
                     </button>
                     <div class="text-foot">
@@ -44,5 +46,8 @@
         </div>
     </div>
 </div>
+<%--<div class="introduce1">--%>
+
+<%--</div>--%>
 </body>
 </html>

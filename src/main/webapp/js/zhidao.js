@@ -8,6 +8,9 @@ $(function (){
         $("#login_btn").click(function () {
             login();
         });
+         $("#regist-button").click(function () {
+            register();
+         });
         $("#addSubject-href").click(function () {
             addSubject();
         });
@@ -19,35 +22,125 @@ $(function (){
         });
 });
 
+function checkPassword() {
+    var flag=false,password=$("#regist-password").val();
+
+    if (password.trim()===""){
+        $("#regist-icon-2").css({"display":"inline"});
+        $("#regist-password-msg").html("密码不能为空").css({"color":"red"});
+        flag=false;
+    }
+    else if (!/^(\w){6,20}$/.test(password.trim())){
+        $("#regist-icon-2").css({"display":"inline"});
+        $("#regist-password-msg").html("只能数字，字母下划线，6-15").css({"color":"red"});
+        flag=false;
+    }
+    else {
+        $("#regist-icon-2").addClass("layui-icon-face-smile").removeClass("layui-icon-face-cry").css({"color":"green"});
+        $('#regist-password-msg').html("ok").css({"color":"green"});
+        flag=true;
+    }
+}
+
+function checkUsername() {
+    var username=$("#regist-username").val();
+    var flag=false;
+    if (username===""){
+        $("#regist-icon").css({"display":"inline"});
+        $("#regist-username-msg").html("用户名不能为空").css({"color":"red"});
+        flag=false;
+    }
+    else if (!/^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(username)){
+        $("#regist-icon").css({"display":"inline"});
+        $('#regist-username-msg').html("请输入正确手机号").css({"color":"red"});
+        flag=false;
+    }
+    else {
+        $("#regist-icon").addClass("layui-icon-face-smile").removeClass("layui-icon-face-cry").css({"color":"green"});
+        $('#regist-username-msg').html("ok").css({"color":"green"});
+        flag=true;
+    }
+    return flag;
+}
+
+
+
+function check() {
+
+}
+
 function register(){
+    // var flg=false;
+
     layui.use('layer',function () {
-        var index=layer.load();
         var user={
-            "username":$("#username").val(),
-            "password":$("#password").val(),
-            "email":$("#email").val()
+            "username":$("#regist-username").val(),
+            "password":$("#regist-password").val(),
+            "email":$("#email").val(),
+            "code":$("#code").val()
         };
-        $.ajax({
-            url:"../user/register.do",
-            type:"POST",
-            data:JSON.stringify(user),
-            contentType:"application/json",
-            async: true,
-            error:function(){
-                layer.close(index);
-                layer.alert("注册失败",{icon:5});
-            },
-            success:function (data) {
-                layer.close(index);
-                if (data.status===0){
-                    layer.alert("注册成功");
+        if (checkUsername()===false){
+        }
+        else if (checkPassword()===false){
+
+        }
+        else {
+            var index=layer.load();
+            $.ajax({
+                url:"../user/register.do",
+                type:"POST",
+                data:JSON.stringify(user),
+                contentType:"application/json",
+                async: true,
+                error:function(){
+                    layer.close(index);
+                    layer.alert("注册失败",{icon:5});
+                },
+                success:function (data) {
+                    layer.close(index);
+                    if (data.status===0){
+                        layer.alert("注册成功");
+                    }
+                    else
+                    {
+                        layer.close(index);
+                        layer.alert(data.msg,{icon:5});
+                    }
                 }
-                else
-                {
-                    layer.alert(data.msg,{icon:5});
+            });
+        }
+
+    })
+}
+
+function sendCode() {
+    layui.use("layer", function () {
+        var username = $("#regist-username").val();
+        if (checkUsername()===false){
+            $("#regist-icon").css({"display":"inline"});
+            $('#regist-username-msg').html("请输入正确手机号").css({"color":"red"});
+            flag=false;
+        }
+        else {
+            var index=layer.load();
+            $.ajax({
+                url: "../user/sendVerifyCode.do",
+                type:"post",
+                data: {"username": username},
+                error: function () {
+                    layer.close(index);
+                    layer.msg("发送失败");
+                },
+                success: function (data) {
+                    layer.close(index);
+                    alert(data.msg);
+                    if (data.status === 0) {
+                    }
+                    else {
+                    }
                 }
-            }
-        });
+            })
+        }
     })
 }
 
@@ -239,6 +332,42 @@ function addMsg() {
 
 }
 
+function allFocusMsg(i) {
+    layui.use(['layer','element'],function () {
+        var layer=layui.layer;
+        var element=layui.element;
+        var code=$("#label1"+i).text();
+        $.ajax({
+            url:"../msg/allMsgByCode.do",
+            type:"POST",
+            data:{"code":code},
+            error:function () {
+                alert("error");
+            },
+            success:function (data) {
+                $("#focus-msg-list").empty();
+                document.getElementById("focus-subject-tishi").style.display="none";
+                $.each(data.data,function (i,item) {
+                    $("#focus-msg-list").append(
+                        "<ul class=\"layui-timeline\">"+
+                        "<li class=\"layui-timeline-item\" style=\"margin-right: 15%\">"+
+                        "<i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i>"+
+                        "<div class=\"layui-timeline-content layui-text\">"+
+                        "<h3 class=\"layui-timeline-title\">"+item.endtime+"</h3>"+
+                        "<div class=\"layui-collapse\">"+
+                        "<div class=\"layui-colla-item\">"+
+                        "<h2 class=\"layui-colla-title\">"+item.title+
+                        "<i class=\"layui-icon layui-icon-reply-fill\" style=\"position: absolute;left: 10px\"></i>"+
+                        "</h2>"+
+                        "<div class=\"layui-colla-content layui-show\">"+item.content+"</div>"+
+                        "</div>"+"</div>"+"</div>"+"</li>"+"</ul>"
+                    )
+                })
+            }
+        })
+    })
+}
+
 function allMsg(i) {
     layui.use(['layer','element'],function () {
         var layer=layui.layer;
@@ -308,14 +437,14 @@ function focusSubject() {
 function allSendSubject() {
     layui.use('layer',function () {
         var index=layer.load();
-        $("#common-title").html("所有主题");
+        $("#common-title").html("发布的主题");
         $.ajax({
             url:"../subject/allSendSubject.do",
             type:"POST",
             async: false,
             error:function () {
                 layer.close(index);
-                alert("error");
+                layer.alert("error");
             },
             success:function (data) {
                 layer.close(index);
@@ -333,6 +462,39 @@ function allSendSubject() {
                        "</div>"+"</li>"
                    );
                })
+            }
+        })
+    })
+}
+
+function allFocusSubject() {
+    layui.use('layer',function () {
+        var index=layer.load();
+        $("#common-title").html("关注的主题");
+        $.ajax({
+            url:"../getSubject/allFocusSubject.do",
+            type:"POST",
+            async: false,
+            error:function () {
+                layer.close(index);
+                layer.alert("error");
+            },
+            success:function (data) {
+                layer.close(index);
+                $.each(data.data,function (i,item) {
+                    $("#focusSubject-list").append(
+                        "<li class=\"layui-timeline-item\">"+
+                        "<div class=\"layui-timeline-content layui-text\" >"
+                        +"<div  onclick=\"allFocusMsg("+i+")\" class=\"layui-collapse\" lay-accordion>"
+                        +"<h2  class=\"layui-colla-title\">"
+                        +"<i class=\"layui-icon layui-icon-template-1 subject-icon\" style=\"color: #ff3683;font-size: 25px\"></i>"
+                        +"<label class=\"subject-title\">"+item.subtitle+"</label>"
+                        +"<label style=\"display: none\" id=\"label1"+i+"\"  class=\"subject-code\">"+item.code+"</label>"
+                        +"</h2>"+
+                        "</div>"+
+                        "</div>"+"</li>"
+                    );
+                })
             }
         })
     })

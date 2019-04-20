@@ -12,7 +12,7 @@ public interface SubjectMapper {
 
     int insertSelective(Subject record);
 
-    Subject selectByPrimaryKey(Integer subid);
+    Subject selectByPrimaryKey(@Param("subid") Integer subid);
 
     int updateByPrimaryKeySelective(Subject record);
 
