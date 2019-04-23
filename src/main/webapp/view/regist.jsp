@@ -46,7 +46,11 @@
                     </div>
                     <div class="lowin-group">
                         <label>邮箱</label>
-                        <label for="email"></label><input type="email" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
+                        <label for="email"></label><input oninput="checkEmail()" type="email" name="email" id="email" autocomplete="current-password" required="required" class="lowin-input">
+                    </div>
+                    <div style="position: absolute;left: 105%;width: 300px;top: 51%">
+                        <i class="layui-icon layui-icon-face-cry" id="regist-icon-3" style="display:none ;font-size:20px;color: red;font-weight: 700;margin-right: 10px"></i>
+                        <span  style="font-weight: 700;" id="regist-email-msg"></span>
                     </div>
                     <div class="lowin-group">
                         <label>验证码</label>
@@ -57,6 +61,7 @@
                     </button>
                     <div class="text-foot">
                         已有账号？点击登录<a href="${pageContext.request.contextPath}/login.jsp" class="login-link">Login</a>
+                    </div>
                     </div>
                 </form>
             </div>

@@ -298,7 +298,8 @@ body{
     position: fixed;
     left: 12%;
     top: 49px;
-    background-image: url("/images/welcome.jpg");
+    background-size: cover;
+    background: url("/images/welcome.jpg") fixed;
 }
 
 .send_msg-form{
@@ -341,6 +342,26 @@ body{
     height: 100%;
     background-size:100% 100%;
     background-image: url("/images/introdece1.png");
+}
+
+.home-head{
+    height: 100px;
+    width: 100%;
+    position: fixed;
+}
+
+
+.home-right{
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+#home-tree{
+    height: 100%;
+}
+
+.home-tree-item{
+        height: 100%;
 }
 /*@media screen and (max-width:960px){*/
     /*html{*/

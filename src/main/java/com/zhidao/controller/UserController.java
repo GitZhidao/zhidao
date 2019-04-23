@@ -49,7 +49,7 @@ public class UserController{
         if (!jsonObject.getString("verifyCode").equals(user.getCode())){
             return ServerResponse.createByErrorMessage("验证码错误");
         }
-        if ((System.currentTimeMillis() - jsonObject.getLong("createTime")) > 1000 * 60 * 5){
+        if ((System.currentTimeMillis() - jsonObject.getLong("verifyTime")) > 1000 * 60 * 5){
             return ServerResponse.createByErrorMessage("验证码失效");
         }
         else {

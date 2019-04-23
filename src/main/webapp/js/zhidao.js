@@ -26,12 +26,12 @@ function checkPassword() {
     var flag=false,password=$("#regist-password").val();
 
     if (password.trim()===""){
-        $("#regist-icon-2").css({"display":"inline"});
+        $("#regist-icon-2").addClass("layui-icon-face-cry").removeClass("layui-icon-face-smile").css({"display":"inline"});
         $("#regist-password-msg").html("密码不能为空").css({"color":"red"});
         flag=false;
     }
     else if (!/^(\w){6,20}$/.test(password.trim())){
-        $("#regist-icon-2").css({"display":"inline"});
+        $("#regist-icon-2").addClass("layui-icon-face-cry").removeClass("layui-icon-face-smile").css({"display":"inline","color":"red"});
         $("#regist-password-msg").html("只能数字，字母下划线，6-15").css({"color":"red"});
         flag=false;
     }
@@ -46,12 +46,12 @@ function checkUsername() {
     var username=$("#regist-username").val();
     var flag=false;
     if (username===""){
-        $("#regist-icon").css({"display":"inline"});
+        $("#regist-icon").addClass("layui-icon-face-cry").removeClass("layui-icon-face-smile").css({"display":"inline","color":"red"});
         $("#regist-username-msg").html("用户名不能为空").css({"color":"red"});
         flag=false;
     }
     else if (!/^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(username)){
-        $("#regist-icon").css({"display":"inline"});
+        $("#regist-icon").css({"display":"inline","color":"red"});
         $('#regist-username-msg').html("请输入正确手机号").css({"color":"red"});
         flag=false;
     }
@@ -63,10 +63,25 @@ function checkUsername() {
     return flag;
 }
 
-
-
-function check() {
-
+function checkEmail() {
+    var email=$("#email").val();
+    var flag=false;
+    if (email===""){
+        $("#regist-icon-3").addClass("layui-icon-face-cry").removeClass("layui-icon-face-smile").css({"display":"inline","color":"red"});
+        $("#regist-username-msg").html("邮箱不能为空").css({"color":"red"});
+        flag=false;
+    }
+    else if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(email)){
+        $("#regist-icon-3").addClass("layui-icon-face-cry").removeClass("layui-icon-face-smile").css({"display":"inline","color":"red"});
+        $('#regist-email-msg').html("请输入正确邮箱格式").css({"color":"red"});
+        flag=false;
+    }
+    else {
+        $("#regist-icon-3").addClass("layui-icon-face-smile").removeClass("layui-icon-face-cry").css({"color":"green"});
+        $('#regist-email-msg').html("ok").css({"color":"green"});
+        flag=true;
+    }
+    return flag;
 }
 
 function register(){
@@ -82,7 +97,8 @@ function register(){
         if (checkUsername()===false){
         }
         else if (checkPassword()===false){
-
+        }
+        else if (checkEmail()===false){
         }
         else {
             var index=layer.load();
@@ -133,10 +149,21 @@ function sendCode() {
                 },
                 success: function (data) {
                     layer.close(index);
-                    alert(data.msg);
-                    if (data.status === 0) {
+                    if (data.status === 0){
+                        var time = 60;
+                        function setTime() {
+                            if (time=== 0) {
+                                $("#send-code").prop('disabled', false).text("点击获取验证码");
+                                time = 60;//60秒过后button上的文字初始化,计时器初始化;
+                            } else {
+                                $("#send-code").prop('disabled', true).text("("+time+"s)后重新发送");
+                                time--;
+                            }
+                        }
+                        setTimeout(function() { setTime() },1000) //每1000毫秒执行一次
                     }
                     else {
+                        alert(data.msg);
                     }
                 }
             })
@@ -186,14 +213,13 @@ function loginOut() {
         error:function(){
             alert("失败");
         },
-        success:function (data) {
+        success:function () {
           window.location.href="../login.jsp";
         }
     })
 }
 
 function updateUserInfo() {
-    var index=layer.load(1);
     var username=$("#username").val();
     var password=$("#password").val();
     var newPassword=$("#newPassword").val();
@@ -378,7 +404,7 @@ function allMsg(i) {
             type:"POST",
             data:{"code":code},
             error:function () {
-                alert("error");
+                layer.alert("error");
             },
             success:function (data) {
                 $("#msg-list").empty();
@@ -412,7 +438,6 @@ function focusSubject() {
             placeholder:'输入主题编号',
             offset:['40%', '40%']
         }, function(val, index){
-            var category=$("#categoryname").val();
             $.ajax({
                 url:"../getSubject/focusSubject.do",
                 type:"POST",
